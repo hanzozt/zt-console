@@ -1,0 +1,7 @@
+:host {
+  display: block;
+}
+
+:host(.p-chips) {
+  display: inline-flex;
+}

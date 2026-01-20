@@ -381,12 +381,7 @@ export class IdentityFormComponent extends ProjectableForm implements OnInit, On
     this.formData.isAdmin = !this.formData.isAdmin;
   }
 
-  setDisabledDate(range) {
-    let label;
-    let date = moment();
-    let closeCalendar = true;
-    const dateEncoded = encodeURIComponent(date.toISOString());
-  }
+  // Date/time selection is handled by reusable <lib-date-time-picker>.
 
   get identityType() {
     return this.isEditing ? this.formData.type.name : this.formData.type;

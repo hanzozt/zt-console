@@ -903,56 +903,39 @@
 
 ::ng-deep .date-time-container {
   &.data-table-date-time {
-    position: fixed;
-    z-index: 9999;
+    position: relative;
+    z-index: 10;
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 0.75rem;
+
     .p-calendar .p-inputtext {
       height: 0.0625rem;
       width: 0.0625rem;
       padding: 0;
     }
-    .filter-button-container {
-      height: 3.125rem;
-      display: flex;
-      flex-direction: row;
-      justify-content: center;
-      align-items: center;
-      .toggleButton {
-        padding-left: var(--paddingSmall);
-        padding-right: var(--paddingSmall);
-        text-align: center;
-        background-color: var(--inputBorder);
-        color: var(--tableText);
-        width: unset;
-        height: 1.4375rem;
-        line-height: 1.4375rem;
-        font-size: 0.875rem;
-        font-weight: 600;
-        position: relative;
-        float: left;
-        cursor: pointer;
-        border-radius: 0.25rem;
-        margin-right: var(--marginSmall);
-        transition: .3s;
-        &:hover {
-          filter: brightness(90%);
-          transition: .3s;
-        }
-      }
+    /* Quick filter buttons are now rendered inside the Material calendar header */
+
+    .data-table-date-range {
+      width: auto;
     }
-    .p-calendar {
-
-      .p-inputtext {
-        border-top-left-radius: 1.25rem;
-        border-bottom-left-radius: 1.25rem;
-        text-indent: 0.3125rem;
-      }
-
-      .p-button-icon-only {
-        border-top-right-radius: 1.25rem;
-        border-bottom-right-radius: 1.25rem;
-      }
+    .mdc-floating-label.mat-mdc-floating-label {
+      margin-top: 0rem;
     }
   }
+}
+
+/* Responsive popup sizing for this picker only */
+::ng-deep .ziti-date-range-panel .mat-datepicker-content,
+::ng-deep .mat-datepicker-content.ziti-date-range-panel {
+  width: min(345px, calc(100vw - 1.5rem));
+  max-width: calc(100vw - 1.5rem);
+}
+
+::ng-deep .ziti-date-range-panel .mat-datepicker-content .mat-calendar,
+::ng-deep .mat-datepicker-content.ziti-date-range-panel .mat-calendar {
+  width: 100%;
 }
 
 ::ng-deep .tag-selector-container {

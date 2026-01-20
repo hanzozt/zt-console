@@ -220,18 +220,14 @@
                                 <option value="indefinite">Indefinite</option>
                                 <option value="pick-date">Pick a Date & Time</option>
                             </select>
-                            <p-datepicker
-                                *ngIf="disableDurationType === 'pick-date'"
-                                [(ngModel)]="disableDuration"
-                                (onSelect)="setDisabledDate($event)"
-                                [showIcon]="true"
-                                [showTime]="true"
-                                [minDate]="minDate"
-                                placeholder="Select a date"
-                                selectionMode="single"
-                                #calendar
-                            >
-                            </p-datepicker>
+                            <div *ngIf="disableDurationType === 'pick-date'" class="disable-identity-datetime-inputs">
+                                <lib-date-time-picker
+                                    class="disable-identity-date-time-picker"
+                                    [(ngModel)]="disableDuration"
+                                    [minDate]="minDate"
+                                    [closeOnDateSelect]="true"
+                                ></lib-date-time-picker>
+                            </div>
                         </div>
                     </div>
                 </lib-form-field-container>

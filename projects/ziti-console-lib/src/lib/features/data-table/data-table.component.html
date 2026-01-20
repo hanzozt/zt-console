@@ -7,6 +7,33 @@
             [filterName]="filterName"
             [filterColumn]="filterColumn"
     ></lib-table-filter-bar>
+    <div *ngIf="showDateTimePicker" class="date-time-container data-table-date-time" (clickOutside)="closeDateTime($event)">
+        <mat-form-field class="data-table-date-range" appearance="outline">
+            <mat-label>Select Time Range</mat-label>
+            <mat-date-range-input [rangePicker]="rangePicker" (click)="rangePicker.open()">
+                <input
+                    matStartDate
+                    matInput
+                    [(ngModel)]="dateRangeStart"
+                    (dateChange)="onCustomDateRangeStartChanged($event.value)"
+                    placeholder="Start"
+                />
+                <input
+                    matEndDate
+                    matInput
+                    [(ngModel)]="dateRangeEnd"
+                    (dateChange)="onCustomDateRangeEndChanged($event.value)"
+                    placeholder="End"
+                />
+            </mat-date-range-input>
+            <mat-datepicker-toggle matSuffix [for]="rangePicker"></mat-datepicker-toggle>
+            <mat-date-range-picker
+                #rangePicker
+                [calendarHeaderComponent]="rangeHeader"
+                panelClass="ziti-date-range-panel"
+            ></mat-date-range-picker>
+        </mat-form-field>
+    </div>
     <lib-table-hidden-columns-bar
             *ngIf="gridRendered && showFilterBar"
             [hiddenColumns]="hiddenColumns"
@@ -89,51 +116,6 @@
         </div>
     </div>
 </div>
-
-<div *ngIf="showDateTimePicker" class="date-time-container data-table-date-time" [ngStyle]="{ left: menuLeft + 'px', top: menuTop + 'px' }" (clickOutside)="closeDateTime($event)">
-    <p-datepicker
-            [(ngModel)]="dateValue"
-            (onSelect)="setDateRangeFilter('custom')"
-            dateFormat="mm/dd/yy"
-            selectionMode="range"
-            placeholder="Select Time Range"
-            #calendar
-    >
-        <ng-template pTemplate="header">
-            <div class="filter-button-container">
-                <div
-                        class="toggleButton"
-                        [ngClass]="{selected: selectedRange === 'hour'}"
-                        (click)="setDateRangeFilter('hour')"
-                >
-                    Last Hour
-                </div>
-                <div
-                        class="toggleButton"
-                        (click)="setDateRangeFilter('day')"
-                        [ngClass]="{selected: selectedRange === 'day'}"
-                >
-                    Last Day
-                </div>
-                <div
-                        class="toggleButton"
-                        (click)="setDateRangeFilter('week')"
-                        [ngClass]="{selected: selectedRange === 'week'}"
-                >
-                    Last Week
-                </div>
-                <div
-                        class="toggleButton"
-                        (click)="setDateRangeFilter('month')"
-                        [ngClass]="{selected: selectedRange === 'month'}"
-                >
-                    Last Month
-                </div>
-            </div>
-        </ng-template>
-    </p-datepicker>
-</div>
-
 <div *ngIf="showTagSelector" class="tag-selector-container data-table-tag-selector" [ngStyle]="{ left: menuLeft + 'px', top: menuTop + 'px' }" (clickOutside)="closeTagSelector($event)">
     <div class="buttonBall icon-close" (click)="closeTagSelector($event)"></div>
     <div class="tag-selector-label">

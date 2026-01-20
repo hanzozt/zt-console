@@ -29,10 +29,17 @@ import {ObjectComponent} from './features/dynamic-widgets/object/object.componen
 import {SelectorInputComponent} from './features/dynamic-widgets/selector/selector-input.component';
 import {CheckboxListInputComponent} from './features/dynamic-widgets/checkbox-list/checkbox-list-input.component';
 import {TextListInputComponent} from "./features/dynamic-widgets/text-list/text-list-input.component";
+import { ChipsInputComponent } from './features/chips-input/chips-input.component';
 import {ChipsModule} from "primeng/chips";
 import {SelectModule} from 'primeng/select';
-import {DatePickerModule} from 'primeng/datepicker';
 import {QRCodeModule} from 'angularx-qrcode';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { OverlayModule } from '@angular/cdk/overlay';
 import {
     ProtocolAddressPortInputComponent
 } from './features/dynamic-widgets/protocol-address-port/protocol-address-port-input.component';
@@ -137,6 +144,8 @@ import { AttributesComponent } from './pages/attributes/attributes.component';
 import {SideNavigatorComponent} from "./features/side-navigator/side-navigator.component";
 import {HeaderBarComponent} from "./features/header-bar/header-bar.component";
 import {QuickAddComponent} from "./features/quick-add/quick-add.component";
+import { DateRangeQuickHeaderComponent } from './features/date-range-quick-header/date-range-quick-header.component';
+import { DateTimePickerComponent } from './features/date-time-picker/date-time-picker.component';
 
 export function playerFactory() {
     return import(/* webpackChunkName: 'lottie-web' */ 'lottie-web');
@@ -151,6 +160,7 @@ export function playerFactory() {
         ObjectComponent,
         SelectorInputComponent,
         TextListInputComponent,
+        ChipsInputComponent,
         CheckboxListInputComponent,
         ProtocolAddressPortInputComponent,
         SideNavbarComponent,
@@ -238,7 +248,8 @@ export function playerFactory() {
         AttributesComponent,
         SideNavigatorComponent,
         HeaderBarComponent,
-        QuickAddComponent
+        QuickAddComponent,
+        DateRangeQuickHeaderComponent
     ],
     exports: [
         ExtendableComponent,
@@ -250,6 +261,7 @@ export function playerFactory() {
         BooleanToggleInputComponent,
         ObjectComponent,
         TextListInputComponent,
+        ChipsInputComponent,
         IdentityServicePathComponent,
         NetworkVisualizerComponent,
         CheckboxListInputComponent,
@@ -309,7 +321,13 @@ export function playerFactory() {
         MatRadioModule,
         ZacRoutingModule,
         ChipsModule,
-        DatePickerModule,
+        MatDatepickerModule,
+        MatNativeDateModule,
+        MatFormFieldModule,
+        MatInputModule,
+        MatButtonModule,
+        MatIconModule,
+        OverlayModule,
         AgGridModule,
         QRCodeModule,
         ClickOutsideModule,
@@ -317,7 +335,8 @@ export function playerFactory() {
         MatTooltipModule,
         MatAutocompleteModule,
         LottieComponent,
-        SelectModule], providers: [
+        SelectModule,
+        DateTimePickerComponent], providers: [
         { provide: SHAREDZ_EXTENSION, useClass: ExtensionsNoopService },
         { provide: ZITI_NAVIGATOR, useValue: {} },
         provideLottieOptions({

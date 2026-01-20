@@ -18,6 +18,10 @@
   font-display: swap;
 }
 
+html {
+  height: 100%;
+}
+
 body {
   --mainBackground: #ffffff;
   --navigationOpaque: rgba(236, 238, 242, 0.85);
@@ -141,6 +145,12 @@ body {
     -moz-box-sizing: border-box;
     box-sizing: border-box;
   }
+}
+
+// When a Material dialog opens, CDK applies `cdk-global-scrollblock` which sets `position: fixed` on <body>.
+// Ensure we retain a real viewport height so app flex layouts (side-nav, ag-grid containers) don't collapse.
+body.ziti-admin-console.cdk-global-scrollblock {
+  height: 100% !important;
 }
 
 div {

@@ -35,8 +35,6 @@ export class ResetEnrollmentComponent implements OnInit {
   type = 'reset';
   identity: any;
   dateValue = moment().add(2, 'days').toDate();
-  showIcon: boolean = true;
-  @ViewChild('calendar', { static: false }) calendar: any;
   constructor(
       private svc: ResetEnrollmentService,
       private dialogRef: MatDialogRef<ResetEnrollmentComponent>,
@@ -82,4 +80,5 @@ export class ResetEnrollmentComponent implements OnInit {
           }
       });
   }
+  // Date/time selection is handled by reusable <lib-date-time-picker>.
 }

@@ -100,7 +100,7 @@ if (environment.nodeIntegration) {
         OAuthModule.forRoot()], providers: [
         { provide: ZITI_DOMAIN_CONTROLLER, useClass: SimpleZitiDomainControllerService },
         { provide: ZITI_URLS, useValue: URLS },
-        { provide: ZITI_NAVIGATOR, useValue: CLASSIC_ZITI_NAVIGATOR },
+        { provide: ZITI_NAVIGATOR, useValue: ZITI_CONSOLE_NAVIGATOR },
         { provide: ZITI_TAB_OVERRIDES, useClass: NoopTabInterceptorService },
         { provide: HTTP_INTERCEPTORS, useClass: apiInterceptor, multi: true },
         { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
