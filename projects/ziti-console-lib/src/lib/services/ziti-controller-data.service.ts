@@ -207,6 +207,20 @@ export class ZitiControllerDataService extends ZitiDataService {
         );
     }
 
+    override deleteEnrollment(enrollmentId: string): Promise<any> {
+      const apiVersions = this.settingsService.apiVersions || {};
+      const prefix = apiVersions["edge-management"]?.v1?.path || '/edge/management/v1';
+      const url = this.settingsService.settings.selectedEdgeController + `${prefix}/enrollments/${enrollmentId}`;
+      return firstValueFrom(this.httpClient.delete(url).pipe(
+          catchError((err: any) => {
+            const error = "Server Not Accessible";
+            if (err.code != "ECONNREFUSED") throw({error: err.code});
+            throw({error: error});
+          })
+        )
+      );
+    }
+
     override reissueEnrollment(id: string, date): Promise<any> {
         const apiVersions = this.settingsService.apiVersions || {};
         const prefix = apiVersions["edge-management"]?.v1?.path || '/edge/management/v1';
