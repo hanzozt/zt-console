@@ -570,4 +570,32 @@ export class IdentitiesPageService extends ListPageServiceClass {
         this.selectedIdentity = item;
         this.sideModalOpen = true;
     }
+
+    public deleteEnrollment(identity) {
+      let enrollmentId;
+      if(!isEmpty(identity?.enrollment?.ott)) {
+        enrollmentId = identity?.enrollment?.ott.id;
+      } else if(!isEmpty(identity?.enrollment.ottca)) {
+        enrollmentId = identity?.enrollment?.ottca.id;
+      } else if (!isEmpty(identity?.enrollment.updb)) {
+        enrollmentId = identity?.enrollment?.updb.id;
+      }
+      return this.dataService.deleteEnrollment(enrollmentId).then(() => {
+        const growlerData = new GrowlerModel(
+          'success',
+          'Success',
+          `Enrollment Deleted`,
+          `Successfully deleted Identity enrollment `,
+        );
+        this.growlerService.show(growlerData);
+      }).catch((error) => {
+        const growlerData = new GrowlerModel(
+          'error',
+          'Error',
+          `Delete Failed`,
+          `Failed to delete Identity enrollment token`,
+        );
+        this.growlerService.show(growlerData);
+      });
+    }
 }

@@ -67,6 +67,7 @@ export abstract class ZitiDataService {
   abstract delete(type: string, id: string): Promise<any>;
   abstract call(url: string): Promise<any>;
   abstract resetEnrollment(id: string, date: string): Promise<any>;
+  abstract deleteEnrollment(enrollmentId: string): Promise<any>
   abstract reissueEnrollment(id: string, date: string): Promise<any>;
   abstract resetMFA(id: string): Promise<any>;
   abstract resetPassword(oldPass, newPass, confirmPass): Promise<any>;

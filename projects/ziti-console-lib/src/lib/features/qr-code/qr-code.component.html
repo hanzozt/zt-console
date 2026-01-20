@@ -1,7 +1,5 @@
 <div class="qr-code-container" [ngClass]="{'modal-view': isModal}">
     <div *ngIf="!qrOnly" class="qr-code-buttons">
-        <span class="info-text" *ngIf="hasJWT && !jwtExpired && type !== 'router'">TO REGISTER THIS IDENTITY</span>
-        <span class="info-text" *ngIf="hasJWT && !jwtExpired && type === 'router'">TO REGISTER THIS ROUTER</span>
         <div (click)="identitiesSvc.downloadJWT(jwt, identity.name)" *ngIf="hasJWT && !jwtExpired && type !== 'router'" class="download-button">
             <div class="download-key"></div>
             <div>DOWNLOAD ENROLLMENT JWT</div>
@@ -36,6 +34,11 @@
             [ngClass]="{'qr-code-expandable': canExpand}"
     ></qrcode>
     <div *ngIf="!qrOnly" class="qr-code-buttons">
+      <div (click)="identitiesSvc.deleteEnrollment(identity)" *ngIf="hasJWT && type === 'identity'" class="download-button">
+        <div class="download-key"></div>
+        <div>DELETE ENROLLMENT</div>
+        <div class="tap-to-download icon-Icon_Delete"></div>
+      </div>
         <span class="info-text" *ngIf="!jwtExpired && type === 'router'">OR</span>
         <div (click)="identitiesSvc.downloadJWT(jwt, identity.name)" *ngIf="!jwtExpired && type === 'router'" class="download-button">
             <div class="download-key"></div>
