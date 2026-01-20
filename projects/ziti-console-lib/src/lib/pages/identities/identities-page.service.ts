@@ -41,6 +41,7 @@ import {ExtensionService} from "../../features/extendable/extensions-noop.servic
 import {IDENTITY_EXTENSION_SERVICE} from "../../features/projectable-forms/identity/identity-form.service";
 import {Router} from "@angular/router";
 import {TableCellNameComponent} from "../../features/data-table/cells/table-cell-name/table-cell-name.component";
+import {ConfirmComponent} from "../../features/confirm/confirm.component";
 
 @Injectable({
     providedIn: 'root'
@@ -572,30 +573,50 @@ export class IdentitiesPageService extends ListPageServiceClass {
     }
 
     public deleteEnrollment(identity) {
-      let enrollmentId;
-      if(!isEmpty(identity?.enrollment?.ott)) {
-        enrollmentId = identity?.enrollment?.ott.id;
-      } else if(!isEmpty(identity?.enrollment.ottca)) {
-        enrollmentId = identity?.enrollment?.ottca.id;
-      } else if (!isEmpty(identity?.enrollment.updb)) {
-        enrollmentId = identity?.enrollment?.updb.id;
-      }
-      return this.dataService.deleteEnrollment(enrollmentId).then(() => {
-        const growlerData = new GrowlerModel(
-          'success',
-          'Success',
-          `Enrollment Deleted`,
-          `Successfully deleted Identity enrollment `,
-        );
-        this.growlerService.show(growlerData);
-      }).catch((error) => {
-        const growlerData = new GrowlerModel(
-          'error',
-          'Error',
-          `Delete Failed`,
-          `Failed to delete Identity enrollment token`,
-        );
-        this.growlerService.show(growlerData);
+      const confirmData = {
+        appendId: 'DeleteEnrollment',
+        title: 'Delete Enrollment',
+        message: `Are you sure you would like to delete the enrollment for this Identity?`,
+        confirmLabel: 'Yes',
+        cancelLabel: 'Oops, no get me out of here',
+        showCancelLink: true,
+        imageUrl: '../../assets/svgs/Growl_Warning.svg',
+      };
+      this.dialogRef = this.dialogForm.open(ConfirmComponent, {
+        data: confirmData,
+        autoFocus: false,
+      });
+      this.dialogRef.afterClosed().subscribe({
+        next: (result) => {
+          if (!result?.confirmed) {
+            return false;
+          }
+          let enrollmentId;
+          if(!isEmpty(identity?.enrollment?.ott)) {
+            enrollmentId = identity?.enrollment?.ott.id;
+          } else if(!isEmpty(identity?.enrollment.ottca)) {
+            enrollmentId = identity?.enrollment?.ottca.id;
+          } else if (!isEmpty(identity?.enrollment.updb)) {
+            enrollmentId = identity?.enrollment?.updb.id;
+          }
+          return this.dataService.deleteEnrollment(enrollmentId).then(() => {
+            const growlerData = new GrowlerModel(
+              'success',
+              'Success',
+              `Enrollment Deleted`,
+              `Successfully deleted Identity enrollment `,
+            );
+            this.growlerService.show(growlerData);
+          }).catch((error) => {
+            const growlerData = new GrowlerModel(
+              'error',
+              'Error',
+              `Delete Failed`,
+              `Failed to delete Identity enrollment token`,
+            );
+            this.growlerService.show(growlerData);
+          });
+        }
       });
     }
 }

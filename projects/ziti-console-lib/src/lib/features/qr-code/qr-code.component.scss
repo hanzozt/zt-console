@@ -9,6 +9,7 @@
     font-weight: 600;
   }
 
+  .delete-button,
   .download-button {
     margin: 0.625rem 0rem;
   }
@@ -72,7 +73,7 @@
   }
 
   &.modal-view {
-    width: 31.25rem;
+    width: 37rem;
     background-color: var(--background);
     padding: 1.25rem;
     border-radius: 0.9375rem;
@@ -89,6 +90,38 @@
     transition: transform .25s;
     &:hover {
       transform: scale(1.15);
+    }
+  }
+}
+
+.identity-enrollment-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--gapMedium);
+
+  .qr-code-button {
+    width: 3.125rem;
+    height: 100%;
+    font-size: 3.125rem;
+    &:before {
+      color: var(--tableText);
+    }
+  }
+}
+
+.delete-button {
+  filter: grayscale(1);
+  &:hover {
+    filter: grayscale(1) brightness(.85);
+  }
+  .tap-to-delete {
+    &.icon-Icon_Delete {
+      &:before {
+        font-weight: 600;
+        color: white;
+      }
     }
   }
 }

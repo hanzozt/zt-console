@@ -944,6 +944,7 @@ lib-form-field-container {
 }
 
 a {
+  &.delete-button,
   &.download-button {
     &:hover {
       color: var(--offWhite_ALWAYS)
@@ -951,6 +952,7 @@ a {
   }
 }
 
+.delete-button,
 .download-button {
   display: flex;
   flex-direction: row;
@@ -996,6 +998,7 @@ a {
     z-index: 10;
   }
 
+  .tap-to-delete,
   .verify-certificate,
   .tap-to-download {
     speak: none;
