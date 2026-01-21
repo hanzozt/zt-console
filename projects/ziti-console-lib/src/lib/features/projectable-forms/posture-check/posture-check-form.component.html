@@ -90,34 +90,29 @@
                             </div>
                             <span class="form-field-label" >Required</span>
                         </div>
-                        <p-select
-                                placeholder="Select configuration..."
+                        <lib-filter-select
+                                placeholder="Select OS..."
                                 optionLabel="name"
                                 optionValue="type"
-                                filterBy="name"
                                 [options]="osTypes"
-                                [filter]="false"
+                                [searchable]="false"
                                 [showClear]="true"
                                 [(ngModel)]="formData.process.osType"
                                 (keyup.enter)="preventEnterProp($event)"
                         >
-                            <ng-template pTemplate="selectedItem">
-                                <div class="os-type-dropdown-item" *ngIf="formData.process.osType && formData.process.osType !== ''">
-                                    <div class="os-type-dropdown-icon"
-                                         [class]="'os-type-dropdown-icon-' + formData.process.osType"
-                                    ></div>
-                                    <div>{{ formData.process.osType }}</div>
+                            <ng-template libFilterSelectTrigger let-option="option" let-value="value">
+                                <div class="os-type-dropdown-item" *ngIf="value && value !== ''">
+                                    <div class="os-type-dropdown-icon" [class]="'os-type-dropdown-icon-' + value"></div>
+                                    <div>{{ value }}</div>
                                 </div>
                             </ng-template>
-                            <ng-template let-os pTemplate="item">
+                            <ng-template libFilterSelectOption let-os>
                                 <div class="os-type-dropdown-item">
-                                    <div class="os-type-dropdown-icon"
-                                         [class]="'os-type-dropdown-icon-' + os.type"
-                                    ></div>
+                                    <div class="os-type-dropdown-icon" [class]="'os-type-dropdown-icon-' + os.type"></div>
                                     <div>{{ os.name }}</div>
                                 </div>
                             </ng-template>
-                        </p-select>
+                        </lib-filter-select>
                     </div>
                     <div class="form-field-label-container">
                         <div class="form-field-header">
@@ -191,34 +186,29 @@
                                 </div>
                                 <span class="form-field-label" >Required</span>
                             </div>
-                            <p-select
-                                    placeholder="Select configuration..."
+                            <lib-filter-select
+                                    placeholder="Select OS..."
                                     optionLabel="name"
                                     optionValue="type"
-                                    filterBy="name"
                                     [options]="osTypes"
-                                    [filter]="false"
+                                    [searchable]="false"
                                     [showClear]="true"
                                     [(ngModel)]="process.osType"
                                     (keyup.enter)="preventEnterProp($event)"
                             >
-                                <ng-template pTemplate="selectedItem">
-                                    <div class="os-type-dropdown-item" *ngIf="process.osType && process.osType !== ''">
-                                        <div class="os-type-dropdown-icon"
-                                             [class]="'os-type-dropdown-icon-' + process.osType"
-                                        ></div>
-                                        <div>{{ process.osType }}</div>
+                                <ng-template libFilterSelectTrigger let-option="option" let-value="value">
+                                    <div class="os-type-dropdown-item" *ngIf="value && value !== ''">
+                                        <div class="os-type-dropdown-icon" [class]="'os-type-dropdown-icon-' + value"></div>
+                                        <div>{{ value }}</div>
                                     </div>
                                 </ng-template>
-                                <ng-template let-os pTemplate="item">
+                                <ng-template libFilterSelectOption let-os>
                                     <div class="os-type-dropdown-item">
-                                        <div class="os-type-dropdown-icon"
-                                             [class]="'os-type-dropdown-icon-' + os.type"
-                                        ></div>
+                                        <div class="os-type-dropdown-icon" [class]="'os-type-dropdown-icon-' + os.type"></div>
                                         <div>{{ os.name }}</div>
                                     </div>
                                 </ng-template>
-                            </p-select>
+                            </lib-filter-select>
                         </div>
                         <div class="form-field-label-container">
                             <div class="form-field-header">

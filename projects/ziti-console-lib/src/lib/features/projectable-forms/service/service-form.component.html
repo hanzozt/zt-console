@@ -64,38 +64,17 @@
                             </option>
                         </select>
                         <div class="dropdown-container" [ngClass]="{'dropdown-loading': svc.configsLoading}">
-                            <p-select
+                            <lib-filter-select
                                     placeholder="Select configuration..."
                                     optionLabel="name"
                                     optionValue="id"
-                                    filterBy="name"
                                     [options]="svc.filteredConfigs"
-                                    [filter]="true"
                                     [showClear]="true"
                                     [disabled]="!svc.selectedConfigTypeId || svc.selectedConfigTypeId === ''"
-                                    (onChange)="configChanged($event)"
+                                    (selectionChange)="configChanged($event)"
+                                    (filterChange)="configFilterChangedDebounced($event)"
                                     [(ngModel)]="svc.selectedConfigId"
-                            >
-                                <ng-template pTemplate="filter" let-options="options">
-                                    <div class="dropdown-filter-container">
-                                        <div class="p-inputgroup" (click)="$event.stopPropagation()">
-                                            <span class="p-inputgroup-addon"><i class="pi pi-search"></i></span>
-                                            <input
-                                                    type="text"
-                                                    pInputText
-                                                    placeholder="Filter"
-                                                    (keyup)="configFilterChangedDebounced($event)" />
-                                        </div>
-                                        <button pButton
-                                                icon="pi pi-times"
-                                                [ngClass]="{'configs-loading': svc.configsLoading}"
-                                                (click)="clearConfigFilter($event)"
-                                                severity="secondary">
-                                        </button>
-                                        <div class="spinner" *ngIf="svc.configsLoading"></div>
-                                    </div>
-                                </ng-template>
-                            </p-select>
+                            ></lib-filter-select>
                         </div>
                         <div *ngIf="!showConfigData && svc.selectedConfigId && svc.selectedConfigId !== '' && svc.selectedConfigId !== 'preview'" class="button-row-right" >
                             <div class="save-button" (click)="svc.attachConfig(svc.selectedConfigId)">

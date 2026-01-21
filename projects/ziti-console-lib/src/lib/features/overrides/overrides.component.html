@@ -22,35 +22,31 @@
         <div class="grid split override-list-container">
             <div>
                 <label for="ServiceList">Service</label>
-                <p-select
+                <lib-filter-select
                     #servicesList
                     id="ServiceList"
                     [options]="services"
                     [(ngModel)]="selectedServiceId"
                     placeholder="Select a service"
-                    [editable]="true"
-                    [optionValue]="'id'"
-                    [optionLabel]="'name'"
-                    (onFocus)="servicesList.show()"
-                    (onChange)="serviceSelectionChanged($event)"
-                    (keyup)="filterServicesDebounced($event)"
-                ></p-select>
+                    optionValue="id"
+                    optionLabel="name"
+                    [openOnFocus]="true"
+                    (filterChange)="filterServicesDebounced($event)"
+                ></lib-filter-select>
             </div>
             <div>
                 <label for="ConfigList">Configuration</label>
-                <p-select
+                <lib-filter-select
                     #configList
                     id="ConfigList"
                     [options]="configs"
                     [(ngModel)]="selectedConfigId"
                     placeholder="Select a config"
-                    [editable]="true"
-                    [optionValue]="'id'"
-                    [optionLabel]="'name'"
-                    (onChange)="configSelectionChanged($event)"
-                    (keyup)="filterConfigsDebounced($event)"
-                    (onFocus)="configList.show()"
-                ></p-select>
+                    optionValue="id"
+                    optionLabel="name"
+                    [openOnFocus]="true"
+                    (filterChange)="filterConfigsDebounced($event)"
+                ></lib-filter-select>
             </div>
         </div>
         <div class="buttons">

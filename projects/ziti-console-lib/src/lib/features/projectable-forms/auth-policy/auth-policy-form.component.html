@@ -283,37 +283,16 @@
                                     matTooltipPosition="below"
                             ></div>
                         </div>
-                        <p-select
+                        <lib-filter-select
                                 placeholder="Select JWT Signer..."
                                 optionLabel="name"
                                 optionValue="id"
-                                filterBy="name"
                                 [options]="svc.jwtSigners"
-                                [filter]="true"
                                 [showClear]="true"
-                                (change)="secondaryJwtSignerChanged($event)"
+                                (selectionChange)="secondaryJwtSignerChanged($event)"
+                                (filterChange)="jwtSignersFilterChangedDebounced($event)"
                                 [(ngModel)]="formData.secondary.requireExtJwtSigner"
-                        >
-                            <ng-template pTemplate="filter" let-options="options">
-                                <div class="dropdown-filter-container">
-                                    <div class="p-inputgroup" (click)="$event.stopPropagation()">
-                                        <span class="p-inputgroup-addon"><i class="pi pi-search"></i></span>
-                                        <input
-                                                type="text"
-                                                pInputText
-                                                placeholder="Filter"
-                                                (keyup)="jwtSignersFilterChangedDebounced($event)" />
-                                    </div>
-                                    <button pButton
-                                            icon="pi pi-times"
-                                            [ngClass]="{'configs-loading': svc.jwtSignersLoading}"
-                                            (click)="clearJwtSignerFilter($event)"
-                                            severity="secondary">
-                                    </button>
-                                    <div class="spinner" *ngIf="svc.jwtSignersLoading"></div>
-                                </div>
-                            </ng-template>
-                        </p-select>
+                        ></lib-filter-select>
                     </div>
                 </lib-form-field-container>
                 <lib-form-field-container

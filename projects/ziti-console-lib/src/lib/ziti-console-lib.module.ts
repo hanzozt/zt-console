@@ -39,6 +39,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
 import { OverlayModule } from '@angular/cdk/overlay';
 import {
     ProtocolAddressPortInputComponent
@@ -146,6 +147,11 @@ import {HeaderBarComponent} from "./features/header-bar/header-bar.component";
 import {QuickAddComponent} from "./features/quick-add/quick-add.component";
 import { DateRangeQuickHeaderComponent } from './features/date-range-quick-header/date-range-quick-header.component';
 import { DateTimePickerComponent } from './features/date-time-picker/date-time-picker.component';
+import { FilterSelectComponent } from './features/filter-select/filter-select.component';
+import {
+    FilterSelectOptionTemplateDirective,
+    FilterSelectTriggerTemplateDirective
+} from './features/filter-select/filter-select-templates.directive';
 
 export function playerFactory() {
     return import(/* webpackChunkName: 'lottie-web' */ 'lottie-web');
@@ -249,7 +255,10 @@ export function playerFactory() {
         SideNavigatorComponent,
         HeaderBarComponent,
         QuickAddComponent,
-        DateRangeQuickHeaderComponent
+        DateRangeQuickHeaderComponent,
+        FilterSelectComponent,
+        FilterSelectOptionTemplateDirective,
+        FilterSelectTriggerTemplateDirective
     ],
     exports: [
         ExtendableComponent,
@@ -313,7 +322,10 @@ export function playerFactory() {
         GeolocateComponent,
         AttributesComponent,
         HeaderBarComponent,
-        SideNavigatorComponent
+        SideNavigatorComponent,
+        FilterSelectComponent,
+        FilterSelectOptionTemplateDirective,
+        FilterSelectTriggerTemplateDirective
     ], imports: [
         CommonModule,
         FormsModule,
@@ -325,6 +337,7 @@ export function playerFactory() {
         MatNativeDateModule,
         MatFormFieldModule,
         MatInputModule,
+        MatSelectModule,
         MatButtonModule,
         MatIconModule,
         OverlayModule,

@@ -64,6 +64,8 @@ export * from './lib/features/dynamic-widgets/object/object.component';
 export * from './lib/features/dynamic-widgets/text-list/text-list-input.component';
 export * from './lib/features/dynamic-widgets/protocol-address-port/protocol-address-port-input.component';
 export * from './lib/features/chips-input/chips-input.component';
+export * from './lib/features/filter-select/filter-select.component';
+export * from './lib/features/filter-select/filter-select-templates.directive';
 export * from './lib/features/projectable-forms/projectable-form.class';
 export * from './lib/features/messaging/growler.component';
 export * from './lib/features/messaging/growler.service';
