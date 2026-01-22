@@ -23,17 +23,19 @@ import {debounce, isEmpty} from "lodash";
     template: `
     <div [ngClass]="fieldClass + (!_isValid ? ' invalid' : '')">
       <label for="schema_{{parentage?parentage+'_':''}}{{_idName}}"  [ngStyle]="{'color': labelColor}">{{_fieldName}}</label>
-      <p-chips id="schema_{{parentage?parentage+'_':''}}{{_idName}}"
+      <lib-chips-input
+          [inputId]="'schema_' + (parentage ? parentage + '_' : '') + _idName"
           (keyup)="onKeyup($event)"
           [(ngModel)]="fieldValue"
           [allowDuplicate]="false"
           [placeholder]="placeholder"
           [addOnBlur]="true"
-          [ngClass]="fieldClass + (!_isValid ? ' invalid' : '')" 
+          [invalid]="!_isValid"
+          [ngClass]="fieldClass + (!_isValid ? ' invalid' : '')"
           (onBlur)="emitEventsDebounced()"
           (onModelChange)="emitEvents()"
-          separator=",">
-      </p-chips>
+          separator=","
+      ></lib-chips-input>
       <div *ngIf="error" class="error">{{error}}</div>
     </div>
  `,

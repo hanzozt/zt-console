@@ -223,7 +223,7 @@
 
   &:checked {
     background-color: var(--green) !important;
-    background-image: url(/projects/ziti-console-lib/src/assets/images/check.png);
+    background-image: url('/assets/images/check.png');
     background-size: .675rem;
     background-position: center center;
     background-repeat: no-repeat;

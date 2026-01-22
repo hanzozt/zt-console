@@ -23,12 +23,13 @@
     <input
       #chipInput
       type="text"
+      [attr.id]="inputId || null"
       [disabled]="disabled"
       [placeholder]="placeholder"
       (keydown)="onKeydown($event)"
       (paste)="onPaste($event)"
       (focus)="onFocus()"
-      (blur)="handleBlur()"
+      (blur)="handleBlur($event)"
       (keyup)="keyup.emit($event)"
     />
   </div>

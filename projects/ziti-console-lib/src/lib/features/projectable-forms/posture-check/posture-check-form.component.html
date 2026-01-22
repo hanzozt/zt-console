@@ -59,28 +59,30 @@
                     </select>
                 </lib-form-field-container>
                 <lib-form-field-container [title]="'MAC Addresses'" [label]="'Required'" *ngIf="formData.typeId === 'MAC'">
-                    <p-chips (keyup)="macAddressesChange($event)"
+                    <lib-chips-input
+                             (keyup)="macAddressesChange($event)"
                              [(ngModel)]="formData.macAddresses"
                              [allowDuplicate]="false"
                              placeholder="Enter mc addresses"
                              [addOnBlur]="true"
                              [ngClass]="{ error: errors['macAddresses'] }"
+                             [invalid]="errors['macAddresses']"
                              separator=","
                              (keyup.enter)="preventEnterProp($event)"
-                    >
-                    </p-chips>
+                    ></lib-chips-input>
                 </lib-form-field-container>
                 <lib-form-field-container [title]="'Windows Domain Details'" [label]="'Required'" *ngIf="formData.typeId === 'DOMAIN'">
-                    <p-chips (keyup)="macAddressesChange($event)"
+                    <lib-chips-input
+                             (keyup)="macAddressesChange($event)"
                              [(ngModel)]="formData.domains"
                              [allowDuplicate]="false"
                              placeholder="Enter domains"
                              [addOnBlur]="true"
                              [ngClass]="{ error: errors['domains'] }"
+                             [invalid]="errors['domains']"
                              separator=","
                              (keyup.enter)="preventEnterProp($event)"
-                    >
-                    </p-chips>
+                    ></lib-chips-input>
                 </lib-form-field-container>
                 <lib-form-field-container [title]="'Process Details'" [contentClass]="'form-field-input-group'" *ngIf="formData.typeId === 'PROCESS'">
                     <div class="form-field-label-container process-os-details-header">
@@ -126,15 +128,15 @@
                             </div>
                             <span class="form-field-label" >Required</span>
                         </div>
-                        <p-chips [(ngModel)]="formData.process.hashes"
+                        <lib-chips-input [(ngModel)]="formData.process.hashes"
                                  [allowDuplicate]="false"
                                  placeholder="Enter hashes"
                                  [addOnBlur]="true"
                                  [ngClass]="{ error: errors['processHashes'] }"
+                                 [invalid]="errors['processHashes']"
                                  separator=","
                                  (keyup.enter)="preventEnterProp($event)"
-                        >
-                        </p-chips>
+                        ></lib-chips-input>
                     </div>
                     <div class="form-field-label-container">
                         <div class="form-field-header">
@@ -222,15 +224,15 @@
                                 </div>
                                 <span class="form-field-label" >Required</span>
                             </div>
-                            <p-chips [(ngModel)]="process.hashes"
+                            <lib-chips-input [(ngModel)]="process.hashes"
                                      [allowDuplicate]="false"
                                      placeholder="Enter hashes"
                                      [addOnBlur]="true"
                                      [ngClass]="{ error: errors['processHashes'] }"
+                                     [invalid]="errors['processHashes']"
                                      separator=","
                                      (keyup.enter)="preventEnterProp($event)"
-                            >
-                            </p-chips>
+                            ></lib-chips-input>
                         </div>
                         <div class="form-field-label-container">
                             <div class="form-field-header">
@@ -253,15 +255,16 @@
                                 </div>
                                 <span class="form-field-label" >Required</span>
                             </div>
-                            <p-chips (keyup)="macAddressesChange($event)"
+                            <lib-chips-input (keyup)="macAddressesChange($event)"
                                      [(ngModel)]="process.signerFingerprints"
                                      [allowDuplicate]="false"
                                      placeholder="Enter signer fingerprints"
                                      [addOnBlur]="true"
                                      [ngClass]="{ error: errors['process[' + i +'].signerFingerprints'] }"
+                                     [invalid]="errors['process[' + i +'].signerFingerprints']"
                                      separator=","
                                      (keyup.enter)="preventEnterProp($event)"
-                            />
+                            ></lib-chips-input>
                         </div>
                     </div>
                     <div class="buttons process-multi-buttons">

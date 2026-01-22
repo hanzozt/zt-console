@@ -21,12 +21,15 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
     }
   ],
   host: {
-    class: 'p-chips p-component p-input-wrapper'
+    class: 'p-chips p-component p-input-wrapper',
+    '[class.p-focus]': 'focused',
+    '[class.error]': 'invalid'
   },
   standalone: false
 })
 export class ChipsInputComponent implements ControlValueAccessor {
   @Input() placeholder = '';
+  @Input() inputId?: string;
   @Input() addOnBlur = true;
   @Input() allowDuplicate = false;
   @Input() separator = ',';
@@ -81,13 +84,13 @@ export class ChipsInputComponent implements ControlValueAccessor {
     this.focused = true;
   }
 
-  handleBlur() {
+  handleBlur(event?: FocusEvent) {
     this.focused = false;
     this.onTouched();
     if (this.addOnBlur) {
       this.commitFromInput();
     }
-    this.onBlur.emit();
+    this.onBlur.emit(event as any);
   }
 
   onPaste(event: ClipboardEvent) {
