@@ -138,7 +138,7 @@ export class QrCodeComponent implements OnChanges {
     const data = {
       jwt: this.jwt,
       expiration: this.expiration,
-      qrCodeSize: 400,
+      qrCodeSize: 500,
       identity: this.identity,
       qrOnly: true
     };

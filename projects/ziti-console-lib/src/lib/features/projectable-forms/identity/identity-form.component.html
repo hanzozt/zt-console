@@ -194,6 +194,13 @@
                         (doRefresh)="refreshIdentity()"
                       ></lib-qr-code>
                     </div>
+                </lib-form-field-container>
+                <lib-form-field-container
+                  *ngIf="isEdit"
+                  [showHeader]="false"
+                  [layout]="'column'"
+                  [contentStyle]="'z-index: 99999999'"
+                >
                     <div class="form-field-label-container" style="gap: var(--paddingMedium)">
                       <div class="form-field-header">
                         <div class="form-field-title-container">
