@@ -12,6 +12,16 @@
   .delete-button,
   .download-button {
     margin: 0.625rem 0rem;
+
+    .download-jwt {
+      background-image: url(/assets/svgs/newJwt.svg);
+      background-repeat: no-repeat;
+      background-size: 1.875rem;
+      width: 1.875rem;
+      height: 1.875rem;
+      margin-left: var(--marginXL);
+      cursor: pointer;
+    }
   }
 
   .reset-success {
@@ -100,11 +110,12 @@
   align-items: center;
   justify-content: space-between;
   gap: var(--gapMedium);
+  width: 100%;
 
   .qr-code-button {
-    width: 3.125rem;
+    width: var(--defaultInputHeight);
     height: 100%;
-    font-size: 3.125rem;
+    font-size: var(--defaultInputHeight);
     &:before {
       color: var(--tableText);
     }
@@ -112,9 +123,8 @@
 }
 
 .delete-button {
-  filter: grayscale(1);
   &:hover {
-    filter: grayscale(1) brightness(.85);
+    filter: brightness(.85);
   }
   .tap-to-delete {
     &.icon-Icon_Delete {

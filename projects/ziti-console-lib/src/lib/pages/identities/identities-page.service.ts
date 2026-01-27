@@ -573,50 +573,54 @@ export class IdentitiesPageService extends ListPageServiceClass {
     }
 
     public deleteEnrollment(identity) {
-      const confirmData = {
-        appendId: 'DeleteEnrollment',
-        title: 'Delete Enrollment',
-        message: `Are you sure you would like to delete the enrollment for this Identity?`,
-        confirmLabel: 'Yes',
-        cancelLabel: 'Oops, no get me out of here',
-        showCancelLink: true,
-        imageUrl: '../../assets/svgs/Growl_Warning.svg',
-      };
-      this.dialogRef = this.dialogForm.open(ConfirmComponent, {
-        data: confirmData,
-        autoFocus: false,
-      });
-      this.dialogRef.afterClosed().subscribe({
-        next: (result) => {
-          if (!result?.confirmed) {
-            return false;
+      return new Promise((resolve, reject) => {
+        const confirmData = {
+          appendId: 'DeleteEnrollment',
+          title: 'Delete Enrollment',
+          message: `Are you sure you would like to delete the enrollment for this Identity?`,
+          confirmLabel: 'Yes',
+          cancelLabel: 'Oops, no get me out of here',
+          showCancelLink: true,
+          imageUrl: '../../assets/svgs/Growl_Warning.svg',
+        };
+        this.dialogRef = this.dialogForm.open(ConfirmComponent, {
+          data: confirmData,
+          autoFocus: false,
+        });
+        this.dialogRef.afterClosed().subscribe({
+          next: (result) => {
+            if (!result?.confirmed) {
+              resolve(false);
+            }
+            let enrollmentId;
+            if(!isEmpty(identity?.enrollment?.ott)) {
+              enrollmentId = identity?.enrollment?.ott.id;
+            } else if(!isEmpty(identity?.enrollment.ottca)) {
+              enrollmentId = identity?.enrollment?.ottca.id;
+            } else if (!isEmpty(identity?.enrollment.updb)) {
+              enrollmentId = identity?.enrollment?.updb.id;
+            }
+            this.dataService.deleteEnrollment(enrollmentId).then(() => {
+              const growlerData = new GrowlerModel(
+                'success',
+                'Success',
+                `Enrollment Deleted`,
+                `Successfully deleted Identity enrollment `,
+              );
+              this.growlerService.show(growlerData);
+              resolve(true);
+            }).catch((error) => {
+              const growlerData = new GrowlerModel(
+                'error',
+                'Error',
+                `Delete Failed`,
+                `Failed to delete Identity enrollment token`,
+              );
+              this.growlerService.show(growlerData);
+              reject(error);
+            });
           }
-          let enrollmentId;
-          if(!isEmpty(identity?.enrollment?.ott)) {
-            enrollmentId = identity?.enrollment?.ott.id;
-          } else if(!isEmpty(identity?.enrollment.ottca)) {
-            enrollmentId = identity?.enrollment?.ottca.id;
-          } else if (!isEmpty(identity?.enrollment.updb)) {
-            enrollmentId = identity?.enrollment?.updb.id;
-          }
-          return this.dataService.deleteEnrollment(enrollmentId).then(() => {
-            const growlerData = new GrowlerModel(
-              'success',
-              'Success',
-              `Enrollment Deleted`,
-              `Successfully deleted Identity enrollment `,
-            );
-            this.growlerService.show(growlerData);
-          }).catch((error) => {
-            const growlerData = new GrowlerModel(
-              'error',
-              'Error',
-              `Delete Failed`,
-              `Failed to delete Identity enrollment token`,
-            );
-            this.growlerService.show(growlerData);
-          });
-        }
-      });
+        });
+      })
     }
 }
