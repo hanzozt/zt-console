@@ -250,10 +250,6 @@ if (fs.existsSync(__dirname+settingsPath+'settings.json')&&updateSettings) {
 if (!fs.existsSync(__dirname+settingsPath+'settings.json')) {
 	fs.copyFileSync(__dirname+__assets + '/data/settings.json', __dirname+settingsPath+'settings.json');
 }
-if (!fs.existsSync(__dirname+settingsPath+'/resources')) {
-	fs.mkdirSync(__dirname+settingsPath+'/resources');
-	fse.copySync(__dirname+__assets + '/resources/',__dirname+settingsPath+'/resources/');
-}
 
 var settings = JSON.parse(fs.readFileSync(__dirname+settingsPath+'settings.json', 'utf8'));
 
@@ -1468,47 +1464,6 @@ function ProcessDelete(type, id, user, request, isFirst=true) {
 }
 
 
-
-/**------------- Customized ZAC only resources Section -------------**/
-
-
-
-
-/**
- * Get the specified resource and send it back to the client. Generally icons and custom images
- */
-app.get('/resource/:resource/:name', function(request, response) {
-    var name = request.params.name;
-	var resource = request.params.resource;
-	response.sendFile(path.resolve(__dirname+settingsPath+'/resources/'+resource+'/'+name));
-});
-
-/**
- * Get the list of all resources defined for a specific type
- */
-app.post("/api/resources", function(request, response) {
-	var type = request.body.type;
-	GetResources(type, response);
-});
-
-/**
- * Returns the list of all resources defined for a specific type
- * 
- * @param {The Type of Resource (e.g. image, icon, etc)} type 
- * @param {*} response 
- */
-function GetResources(type, response) {
-	var toReturn = [];
-	fs.readdir(__dirname+settingsPath+'/resources/'+type+'/', (err, files) => {
-		if (err) response.json({ type: type, data: toReturn });
-		else {
-			files.forEach(file => {
-				toReturn[toReturn.length] = "/resource/"+type+"/"+file;
-			});
-			response.json({ type: type, data: toReturn });
-		}
-	});
-}
 
 app.post("/api/execute", function(request, response) {
 	//Authenticate(request).then((results) => {
