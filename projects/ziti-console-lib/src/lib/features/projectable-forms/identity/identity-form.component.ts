@@ -63,7 +63,9 @@ export class IdentityFormComponent extends ProjectableForm implements OnInit, On
 
   isEditing = false;
   enrollmentExpiration: any;
+  expirationDate: string = '';
   jwt: any;
+  jwtExpired;
   associatedServicePolicies: any = [];
   associatedServicePolicyNames: any = [];
   associatedServices: any = [];
@@ -154,6 +156,7 @@ export class IdentityFormComponent extends ProjectableForm implements OnInit, On
       }
       this.jwt = this.identitiesService.getJWT(this.formData);
       this.enrollmentExpiration = this.identitiesService.getEnrollmentExpiration(this.formData);
+      this.updateExpirationDate();
     }
   }
 
@@ -162,6 +165,7 @@ export class IdentityFormComponent extends ProjectableForm implements OnInit, On
       this.formData = result.data;
       this.initData = cloneDeep(this.formData);
       this.enrollmentExpiration = this.identitiesService.getEnrollmentExpiration(this.formData);
+      this.updateExpirationDate();
       this.jwt = this.identitiesService.getJWT(this.formData);
       this.updateBadges();
       this.extService.updateFormData(this.formData);
@@ -243,10 +247,6 @@ export class IdentityFormComponent extends ProjectableForm implements OnInit, On
 
   get hasEnrolmentToken() {
     return this.identitiesService.hasEnrolmentToken(this.formData);
-  }
-
-  get jwtExpired() {
-    return false;
   }
 
   headerActionRequested(action) {
@@ -401,6 +401,19 @@ export class IdentityFormComponent extends ProjectableForm implements OnInit, On
 
   get entityDisabled() {
     return this.formData?.disabled;
+  }
+
+  get showResetToken() {
+    return this.formData?.authenticators?.cert?.id || this.formData?.authenticators?.updb?.id;
+  }
+
+  updateExpirationDate() {
+    this.expirationDate = moment(this.enrollmentExpiration).local().format('M/D/YY h:mm a');
+    this.jwtExpired = this.getJwtExpired();
+  }
+
+  getJwtExpired() {
+    return moment(this.enrollmentExpiration).isBefore();
   }
 
   disableIdentity() {
