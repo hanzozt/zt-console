@@ -1,3 +1,9 @@
+# app-ziti-console-v4.0.2
+# ziti-console-lib-v1.0.2
+## Bug Fixes
+* [Issue #797](https://github.com/openziti/ziti-console/issues/797) - Allow deleting of an enrollment from the Identity edit form
+* [Issue #800](https://github.com/openziti/ziti-console/issues/800) - ZAC docker image broken in new versions
+*
 # app-ziti-console-v4.0.1
 # ziti-console-lib-v1.0.1
 ## Bug Fixes
