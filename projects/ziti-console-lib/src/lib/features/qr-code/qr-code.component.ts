@@ -131,6 +131,12 @@ export class QrCodeComponent implements OnChanges {
     });
   }
 
+  deleteEnrollment() {
+    this.identitiesSvc.deleteEnrollment(this.identity).then(() => {
+      this.doRefresh.emit(true);
+    });
+  }
+
   expandQRCode() {
     if (!this.canExpand) {
       return;

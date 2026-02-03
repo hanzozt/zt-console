@@ -128,6 +128,14 @@
   }
 }
 
+.info-text {
+  color: var(--groupText);
+
+  &.expired-text {
+    color: var(--red);
+  }
+}
+
 ::ng-deep .admin-toggle .form-field-toggle-container {
   &:focus {
     .form-field-label {

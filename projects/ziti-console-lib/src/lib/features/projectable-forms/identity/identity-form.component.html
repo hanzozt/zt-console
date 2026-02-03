@@ -173,16 +173,22 @@
             <div class="form-group-column two-fifths">
                 <ng-content select="[slot=column-2-slot-1]"></ng-content>
                 <lib-form-field-container
-                        *ngIf="isEdit"
-                        [showHeader]="false"
-                        [layout]="'column'"
-                        [contentStyle]="'z-index: 99999999'"
+                  *ngIf="isEdit && (hasEnrolmentToken || hasAuthenticator)"
+                  [showHeader]="false"
+                  [layout]="'column'"
+                  [contentStyle]="'z-index: 99999999'"
                 >
-                    <div *ngIf="hasEnrolmentToken || hasAuthenticator" class="form-field-label-container" style="gap: var(--paddingMedium)">
+                    <div class="form-field-label-container" style="gap: var(--paddingMedium)">
                       <div class="form-field-header">
                         <div class="form-field-title-container">
                           <span class="form-field-title">Enrollment:</span>
                         </div>
+                        <span class="form-field-label info-text"
+                              *ngIf="jwtExpired !== undefined && !showResetToken"
+                              [class.expired-text]="jwtExpired"
+                        >
+                          {{jwtExpired ? 'EXPIRED' : 'EXPIRES'}} {{expirationDate}}
+                        </span>
                       </div>
                       <lib-qr-code
                         [identity]="formData"
