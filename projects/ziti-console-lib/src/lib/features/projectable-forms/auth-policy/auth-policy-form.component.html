@@ -284,11 +284,13 @@
                             ></div>
                         </div>
                         <lib-filter-select
+                                class="auth-policy__jwt-signer-select"
                                 placeholder="Select JWT Signer..."
                                 optionLabel="name"
                                 optionValue="id"
                                 [options]="svc.jwtSigners"
                                 [showClear]="true"
+                                [panelClass]="'auth-policy__jwt-signer-select-panel'"
                                 (selectionChange)="secondaryJwtSignerChanged($event)"
                                 (filterChange)="jwtSignersFilterChangedDebounced($event)"
                                 [(ngModel)]="formData.secondary.requireExtJwtSigner"

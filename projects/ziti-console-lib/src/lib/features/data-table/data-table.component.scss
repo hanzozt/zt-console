@@ -917,8 +917,73 @@
     }
     /* Quick filter buttons are now rendered inside the Material calendar header */
 
-    .data-table-date-range {
-      width: auto;
+    .data-table-date-range-control {
+      display: flex;
+      align-items: stretch;
+      justify-content: flex-end;
+      position: relative;
+      max-width: 100%;
+    }
+
+    .data-table-date-range-input {
+      height: var(--defaultInputHeight, 3rem);
+      flex: 1 1 auto;
+      min-width: 0;
+      padding: 0 1.25rem;
+      border: 1px solid var(--inputBorder, #d4d9e2);
+      border-right: none;
+      border-top-left-radius: var(--inputBorderRadius, 0.5rem);
+      border-bottom-left-radius: var(--inputBorderRadius, 0.5rem);
+      background: #ffffff;
+      color: var(--menu, #111827);
+      font-size: 1rem;
+      font-weight: 600;
+      outline: none;
+      box-sizing: border-box;
+      cursor: pointer;
+
+      &::placeholder {
+        color: #c6ccd6;
+        font-size: 1rem;
+        font-weight: 600;
+      }
+    }
+
+    .data-table-date-range-button {
+      height: var(--defaultInputHeight, 3rem);
+      width: var(--defaultInputHeight, 3rem);
+      border: 1px solid var(--primaryColor, #0d6efd);
+      border-top-right-radius: var(--inputBorderRadius, 0.5rem);
+      border-bottom-right-radius: var(--inputBorderRadius, 0.5rem);
+      border-top-left-radius: 0;
+      border-bottom-left-radius: 0;
+      background: var(--primaryColor, #0d6efd);
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      padding: 0;
+
+      .pi {
+        font-size: 1.5rem;
+        line-height: 1;
+      }
+    }
+
+    .data-table-date-range-button:hover:not(:disabled) {
+      filter: brightness(1.03);
+    }
+
+    /* Hidden Material inputs used only for wiring the picker. */
+    .data-table-date-range-hidden {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 1px;
+      height: 1px;
+      opacity: 0;
+      pointer-events: none;
     }
     .mdc-floating-label.mat-mdc-floating-label {
       margin-top: 0rem;

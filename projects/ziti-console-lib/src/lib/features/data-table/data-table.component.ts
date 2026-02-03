@@ -137,6 +137,13 @@ export class DataTableComponent implements OnChanges, OnInit {
   currentHeaderComponentParams: any = {};
   subscription: Subscription = new Subscription();
   rangeHeader = DateRangeQuickHeaderComponent;
+  private readonly dateRangeLabelMap: Record<string, string> = {
+    hour: 'Last Hour',
+    day: 'Last Day',
+    week: 'Last Week',
+    month: 'Last Month',
+    custom: 'Custom',
+  };
 
   public menuColumnDefinition = {
     colId: 'ziti-ag-menu',
@@ -453,6 +460,21 @@ export class DataTableComponent implements OnChanges, OnInit {
     };
 
     this.tableFilterService.updateFilter(filterObj);
+  }
+
+  get dateRangeDisplayText(): string {
+    // Prefer showing the chosen dates (matches UI screenshot format).
+    if (this.dateRangeStart && this.dateRangeEnd) {
+      return `${moment(this.dateRangeStart).format('MM/DD/YYYY')} - ${moment(this.dateRangeEnd).format('MM/DD/YYYY')}`;
+    }
+    if (this.dateRangeStart) {
+      return `${moment(this.dateRangeStart).format('MM/DD/YYYY')} -`;
+    }
+    // Otherwise, quick presets show a friendly label.
+    if (this.selectedRange && this.selectedRange !== 'custom') {
+      return this.dateRangeLabelMap[this.selectedRange] ?? '';
+    }
+    return '';
   }
 
   tagSelectionChanged(event, isRole) {

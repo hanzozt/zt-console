@@ -30,6 +30,11 @@ import { FilterSelectOptionTemplateDirective, FilterSelectTriggerTemplateDirecti
 export class FilterSelectComponent implements ControlValueAccessor, OnDestroy {
     @Input() id?: string;
     @Input() placeholder = '';
+    /**
+     * Classes applied to the Material select overlay panel (useful for per-instance styling).
+     * Note: the panel is rendered in an overlay container, outside this component's DOM.
+     */
+    @Input() panelClass?: string | string[];
 
     /** Array of raw option objects */
     @Input() options: any[] = [];

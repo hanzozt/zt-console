@@ -7,32 +7,49 @@
             [filterName]="filterName"
             [filterColumn]="filterColumn"
     ></lib-table-filter-bar>
-    <div *ngIf="showDateTimePicker" class="date-time-container data-table-date-time" (clickOutside)="closeDateTime($event)">
-        <mat-form-field class="data-table-date-range" appearance="outline">
-            <mat-label>Select Time Range</mat-label>
-            <mat-date-range-input [rangePicker]="rangePicker" (click)="rangePicker.open()">
+    <div  class="date-time-container data-table-date-time" (clickOutside)="closeDateTime($event)">
+        <div class="data-table-date-range-control">
+            <input
+                class="data-table-date-range-input"
+                [value]="dateRangeDisplayText"
+                placeholder="Select Time Range"
+                readonly
+                (click)="rangePicker.open()"
+            />
+            <button
+                type="button"
+                class="data-table-date-range-button"
+                aria-label="Select time range"
+                (click)="rangePicker.open(); $event.stopPropagation()"
+            >
+                <i class="pi pi-calendar" aria-hidden="true"></i>
+            </button>
+
+            <!-- Keep Material range input in DOM for picker wiring + ngModel updates -->
+            <mat-date-range-input class="data-table-date-range-hidden" [rangePicker]="rangePicker">
                 <input
                     matStartDate
                     matInput
                     [(ngModel)]="dateRangeStart"
                     (dateChange)="onCustomDateRangeStartChanged($event.value)"
-                    placeholder="Start"
+                    tabindex="-1"
+                    aria-hidden="true"
                 />
                 <input
                     matEndDate
                     matInput
                     [(ngModel)]="dateRangeEnd"
                     (dateChange)="onCustomDateRangeEndChanged($event.value)"
-                    placeholder="End"
+                    tabindex="-1"
+                    aria-hidden="true"
                 />
             </mat-date-range-input>
-            <mat-datepicker-toggle matSuffix [for]="rangePicker"></mat-datepicker-toggle>
             <mat-date-range-picker
                 #rangePicker
                 [calendarHeaderComponent]="rangeHeader"
                 panelClass="ziti-date-range-panel"
             ></mat-date-range-picker>
-        </mat-form-field>
+        </div>
     </div>
     <lib-table-hidden-columns-bar
             *ngIf="gridRendered && showFilterBar"

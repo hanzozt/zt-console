@@ -3,14 +3,13 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import moment from 'moment';
 import { CommonModule } from '@angular/common';
 import { OverlayModule } from '@angular/cdk/overlay';
-import { MatIconModule } from '@angular/material/icon';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 
 @Component({
   selector: 'lib-date-time-picker',
   templateUrl: './date-time-picker.component.html',
   styleUrls: ['./date-time-picker.component.scss'],
-  imports: [CommonModule, OverlayModule, MatIconModule, MatDatepickerModule],
+  imports: [CommonModule, OverlayModule, MatDatepickerModule],
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
