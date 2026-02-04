@@ -163,11 +163,11 @@ export class IdentityFormComponent extends ProjectableForm implements OnInit, On
   refreshIdentity() {
     this.svc.refreshIdentity(this.formData.id).then(result => {
       this.formData = result.data;
-      this.initData = cloneDeep(this.formData);
       this.enrollmentExpiration = this.identitiesService.getEnrollmentExpiration(this.formData);
       this.updateExpirationDate();
       this.jwt = this.identitiesService.getJWT(this.formData);
       this.updateBadges();
+      this.initData = cloneDeep(this.formData);
       this.extService.updateFormData(this.formData);
     })
   }
