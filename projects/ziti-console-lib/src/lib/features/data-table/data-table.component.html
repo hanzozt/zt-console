@@ -7,7 +7,7 @@
             [filterName]="filterName"
             [filterColumn]="filterColumn"
     ></lib-table-filter-bar>
-    <div  class="date-time-container data-table-date-time" (clickOutside)="closeDateTime($event)">
+    <div  *ngIf="showDateTimePicker" class="date-time-container data-table-date-time" (clickOutside)="closeDateTime($event)">
         <div class="data-table-date-range-control">
             <input
                 class="data-table-date-range-input"
