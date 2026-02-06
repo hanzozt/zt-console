@@ -7,23 +7,31 @@
             [filterName]="filterName"
             [filterColumn]="filterColumn"
     ></lib-table-filter-bar>
-    <div  *ngIf="showDateTimePicker" class="date-time-container data-table-date-time" (clickOutside)="closeDateTime($event)">
+    <div
+            *ngIf="showDateTimePicker"
+            class="date-time-container data-table-date-time"
+            [class.date-picker-from-header]="datePickerFromHeader"
+            [ngStyle]="datePickerFromHeader ? { left: menuLeft + 'px', top: menuTop + 'px' } : {}"
+            (clickOutside)="closeDateTime($event)"
+    >
         <div class="data-table-date-range-control">
-            <input
-                class="data-table-date-range-input"
-                [value]="dateRangeDisplayText"
-                placeholder="Select Time Range"
-                readonly
-                (click)="rangePicker.open()"
-            />
-            <button
-                type="button"
-                class="data-table-date-range-button"
-                aria-label="Select time range"
-                (click)="rangePicker.open(); $event.stopPropagation()"
-            >
-                <i class="pi pi-calendar" aria-hidden="true"></i>
-            </button>
+            <ng-container *ngIf="!datePickerFromHeader">
+                <input
+                    class="data-table-date-range-input"
+                    [value]="dateRangeDisplayText"
+                    placeholder="Select Time Range"
+                    readonly
+                    (click)="rangePicker.open()"
+                />
+                <button
+                    type="button"
+                    class="data-table-date-range-button"
+                    aria-label="Select time range"
+                    (click)="rangePicker.open(); $event.stopPropagation()"
+                >
+                    <i class="pi pi-calendar" aria-hidden="true"></i>
+                </button>
+            </ng-container>
 
             <!-- Keep Material range input in DOM for picker wiring + ngModel updates -->
             <mat-date-range-input class="data-table-date-range-hidden" [rangePicker]="rangePicker">
@@ -48,6 +56,8 @@
                 #rangePicker
                 [calendarHeaderComponent]="rangeHeader"
                 panelClass="ziti-date-range-panel"
+                [xPosition]="datePickerFromHeader ? 'start' : 'end'"
+                [yPosition]="datePickerFromHeader ? 'above' : 'below'"
             ></mat-date-range-picker>
         </div>
     </div>

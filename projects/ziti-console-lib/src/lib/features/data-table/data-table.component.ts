@@ -109,6 +109,8 @@ export class DataTableComponent implements OnChanges, OnInit {
   filterOptions: any = [];
   showFilterOptions;
   showDateTimePicker;
+  /** When true, picker was opened from header filter icon: show only calendar, position at icon */
+  datePickerFromHeader = false;
   showTagSelector;
   appendAttributeHash = true;
   attributesColumn = '';
@@ -374,6 +376,7 @@ export class DataTableComponent implements OnChanges, OnInit {
     if (type === 'DATETIME') {
       this.dateTimeColumn = columnId;
       this.dateTimeFilterLabel = filterLabel || 'Date: ';
+      this.datePickerFromHeader = true;
       _.delay(() => {
         this.showDateTimePicker = true;
       }, 10);
@@ -445,6 +448,10 @@ export class DataTableComponent implements OnChanges, OnInit {
 
     if (closeCalendar) {
       this.rangePicker?.close();
+      if (this.datePickerFromHeader) {
+        this.showDateTimePicker = false;
+        this.datePickerFromHeader = false;
+      }
     }
     if (range !== 'custom') {
       this.dateValue = [startDate.toDate(), endDate.toDate()];
@@ -531,6 +538,7 @@ export class DataTableComponent implements OnChanges, OnInit {
 
   closeDateTime(event): void {
     this.showDateTimePicker = false;
+    this.datePickerFromHeader = false;
   }
 
   onCustomDateRangeStartChanged(date: Date | null) {

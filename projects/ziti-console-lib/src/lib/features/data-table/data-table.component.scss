@@ -910,6 +910,25 @@
     justify-content: flex-end;
     margin-top: 0.75rem;
 
+    /* Opened from header filter icon: only calendar, positioned at icon */
+    &.date-picker-from-header {
+      position: fixed;
+      width: 0;
+      height: 0;
+      margin: 0;
+      min-width: 0;
+      overflow: visible;
+
+      .data-table-date-range-control {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 1px;
+        height: 1px;
+        min-width: 0;
+      }
+    }
+
     .p-calendar .p-inputtext {
       height: 0.0625rem;
       width: 0.0625rem;
@@ -975,13 +994,15 @@
       filter: brightness(1.03);
     }
 
-    /* Hidden Material inputs used only for wiring the picker. */
+    /* Hidden Material inputs used only for wiring the picker. Position over the visible
+       input+button so the overlay opens below them (not at left:0 which opens to the left). */
     .data-table-date-range-hidden {
       position: absolute;
-      left: 0;
+      right: 0;
       top: 0;
       width: 1px;
       height: 1px;
+      min-width: 1px;
       opacity: 0;
       pointer-events: none;
     }
