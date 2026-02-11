@@ -7,7 +7,6 @@ import {TabNameService} from "../../services/tab-name.service";
 
 import {invoke, isEmpty, defer, unset, cloneDeep, result} from 'lodash';
 import moment from 'moment';
-import $ from 'jquery';
 import {ConfirmComponent} from "../../features/confirm/confirm.component";
 import {MatDialog} from "@angular/material/dialog";
 import {SettingsService} from "../../services/settings.service";

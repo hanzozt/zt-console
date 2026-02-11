@@ -27,7 +27,6 @@ import {
 } from '@angular/core';
 
 // Import the resized event model
-import $ from 'jquery';
 import _ from 'lodash';
 import moment from 'moment'
 import { MatDateRangePicker } from '@angular/material/datepicker';
@@ -604,10 +603,10 @@ export class DataTableComponent implements OnChanges, OnInit {
         this.dragLeave.emit(params);
       },
       onRowDragEnd: () => {
-        $('.attribute-item').show();
-        $('.drag-hover').removeClass('drag-hover');
-        $('#ColumnVisibilityHeader').trigger('click');
-        $('.new-attribute-target').hide();
+        document.querySelectorAll<HTMLElement>('.attribute-item').forEach(el => el.style.display = '');
+        document.querySelectorAll('.drag-hover').forEach(el => el.classList.remove('drag-hover'));
+        document.getElementById('ColumnVisibilityHeader')?.click();
+        document.querySelectorAll<HTMLElement>('.new-attribute-target').forEach(el => el.style.display = 'none');
       },
       rowClassRules: {
         // row style function
@@ -979,18 +978,25 @@ export class DataTableComponent implements OnChanges, OnInit {
   }
 
   _handleTableScroll(scroller): void {
-    const scrollWidth = $('.ag-center-cols-container').width();
-    const viewWidth = $('.ag-center-cols-viewport').width();
+    const centerCols = document.querySelector('.ag-center-cols-container') as HTMLElement;
+    const centerViewport = document.querySelector('.ag-center-cols-viewport') as HTMLElement;
+    const pinnedLeft = document.querySelector('.ag-pinned-left-cols-container') as HTMLElement;
+    const pinnedRight = document.querySelector('.ag-pinned-right-cols-container') as HTMLElement;
+    if (!centerCols || !centerViewport) {
+      return;
+    }
+    const scrollWidth = centerCols.offsetWidth;
+    const viewWidth = centerViewport.offsetWidth;
     const scrollableWidth = scrollWidth - viewWidth;
     if (scroller.left > 0) {
-      $('.ag-pinned-left-cols-container').addClass('ag-pinned-left-shadow');
+      pinnedLeft?.classList.add('ag-pinned-left-shadow');
     } else {
-      $('.ag-pinned-left-cols-container').removeClass('ag-pinned-left-shadow');
+      pinnedLeft?.classList.remove('ag-pinned-left-shadow');
     }
     if (scroller.left < scrollableWidth - 2) {
-      $('.ag-pinned-right-cols-container').addClass('ag-pinned-right-shadow');
+      pinnedRight?.classList.add('ag-pinned-right-shadow');
     } else {
-      $('.ag-pinned-right-cols-container').removeClass('ag-pinned-right-shadow');
+      pinnedRight?.classList.remove('ag-pinned-right-shadow');
     }
   }
 

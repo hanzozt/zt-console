@@ -22,7 +22,6 @@ import {catchError} from "rxjs/operators";
 import {firstValueFrom, map, Observable} from "rxjs";
 import { VisualizerServiceClass  } from '../visualizer-service.class';
 import * as d3 from 'd3';
-import $ from 'jquery';
 import _ from 'lodash';
 import {cloneDeep} from "lodash";
 import { Subscription } from 'rxjs';

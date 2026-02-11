@@ -18,7 +18,6 @@ import {
 } from '../../../services/ziti-data.service';
 import { IdentityServicePathHelper } from './identity-service-path.helper';
 import * as d3 from 'd3';
-import $ from 'jquery';
 import _ from 'lodash';
 import { Subscription } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
