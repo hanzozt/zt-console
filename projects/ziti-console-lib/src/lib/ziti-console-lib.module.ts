@@ -30,8 +30,6 @@ import {SelectorInputComponent} from './features/dynamic-widgets/selector/select
 import {CheckboxListInputComponent} from './features/dynamic-widgets/checkbox-list/checkbox-list-input.component';
 import {TextListInputComponent} from "./features/dynamic-widgets/text-list/text-list-input.component";
 import { ChipsInputComponent } from './features/chips-input/chips-input.component';
-import {ChipsModule} from "primeng/chips";
-import {SelectModule} from 'primeng/select';
 import {QRCodeModule} from 'angularx-qrcode';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
@@ -332,7 +330,6 @@ export function playerFactory() {
         MatDialogModule,
         MatRadioModule,
         ZacRoutingModule,
-        ChipsModule,
         MatDatepickerModule,
         MatNativeDateModule,
         MatFormFieldModule,
@@ -348,7 +345,6 @@ export function playerFactory() {
         MatTooltipModule,
         MatAutocompleteModule,
         LottieComponent,
-        SelectModule,
         DateTimePickerComponent], providers: [
         { provide: SHAREDZ_EXTENSION, useClass: ExtensionsNoopService },
         { provide: ZITI_NAVIGATOR, useValue: {} },
