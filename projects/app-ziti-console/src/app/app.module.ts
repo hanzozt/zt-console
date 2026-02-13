@@ -25,7 +25,7 @@ import {FormsModule} from "@angular/forms";
 import { OAuthModule } from 'angular-oauth2-oidc';
 import {environment} from "./environments/environment";
 import { providePrimeNG } from 'primeng/config';
-import Aura from '@primeng/themes/aura';
+import Aura from '@primeuix/themes/aura';
 
 import {
     NoopTabInterceptorService,
