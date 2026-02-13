@@ -1,3 +1,11 @@
+# app-ziti-console-v4.0.3
+# ziti-console-lib-v1.0.3
+## Feature/Improvements
+* [Issue #787](https://github.com/openziti/ziti-console/issues/787) - Move "Posture Checks" to "Policies" tab list
+## Bug Fixes
+* [Issue #803](https://github.com/openziti/ziti-console/issues/803) - "Unsaved Changed" warning shows after disabling/enabling an identity
+
+
 # app-ziti-console-v4.0.2
 # ziti-console-lib-v1.0.2
 ## Bug Fixes

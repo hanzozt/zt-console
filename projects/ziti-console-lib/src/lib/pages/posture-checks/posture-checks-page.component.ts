@@ -47,7 +47,7 @@ export class PostureChecksPageComponent extends ListPageComponent implements OnI
     }
 
     override ngOnInit() {
-        this.tabs = this.tabNames.getTabs('posture-checks');
+        this.tabs = this.tabNames.getTabs('policies');
         this.svc.refreshData = this.refreshData;
         super.ngOnInit();
     }
