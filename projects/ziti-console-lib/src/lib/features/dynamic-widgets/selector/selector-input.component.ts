@@ -8,40 +8,51 @@ import {debounce, defer} from "lodash";
     <div [ngClass]="fieldClass + (!_isValid ? 'invalid' : '')" class="selector-input-container">
       <div class="label-container">
         <label [ngStyle]="{'color': labelColor}">{{_fieldName}}</label>
-        <div
-            *ngIf="helpText"
+        @if (helpText) {
+          <div
             class="form-field-info infoicon"
             matTooltip="{{helpText}}"
             matTooltipPosition="above"
             matTooltipClass="wide-tooltip"
-        ></div>
+          ></div>
+        }
       </div>
-      <select
-          *ngIf="!hideSelect"
+      @if (!hideSelect) {
+        <select
           id="schema_{{parentage?parentage+'_':''}}{{_idName}}"
           class="jsonEntry"
           [ngClass]="{'error': error}"
           [(ngModel)]="fieldValue"
           (change)="selected()"
-      >
-          <option [value]="undefined" *ngIf="placeholder">{{placeholder}}</option>
-          <ng-container *ngIf="!listIsObject">
-            <option *ngFor="let name of _valueList" [value]="name">{{name}}</option>
-          </ng-container>
-          <ng-container *ngIf="listIsObject">
-            <option *ngFor="let data of _valueList" [value]="data.value">{{data.name}}</option>
-          </ng-container>
-      </select>
-      <select
-          *ngIf="hideSelect"
+          >
+          @if (placeholder) {
+            <option [value]="undefined">{{placeholder}}</option>
+          }
+          @if (!listIsObject) {
+            @for (name of _valueList; track name) {
+              <option [value]="name">{{name}}</option>
+            }
+          }
+          @if (listIsObject) {
+            @for (data of _valueList; track data) {
+              <option [value]="data.value">{{data.name}}</option>
+            }
+          }
+        </select>
+      }
+      @if (hideSelect) {
+        <select
           class="placeholder-select"
           [ngClass]="{'error': error}"
           [(ngModel)]="fieldValue"
-      >
-      </select>
-      <div *ngIf="error" class="error">{{error}}</div>
+          >
+        </select>
+      }
+      @if (error) {
+        <div class="error">{{error}}</div>
+      }
     </div>
-  `,
+    `,
     styleUrls: ['selector-input.component.scss'],
     standalone: false
 })

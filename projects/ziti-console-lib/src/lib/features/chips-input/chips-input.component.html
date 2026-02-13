@@ -3,21 +3,23 @@
   [class.p-focus]="focused"
   [class.error]="invalid"
   (click)="focusInput()"
->
-  <div class="p-chips-token" *ngFor="let chip of value; let i = index">
-    <span class="p-chips-token-label">{{ chip }}</span>
-    <span
-      class="p-chips-token-icon"
-      role="button"
-      tabindex="0"
-      aria-label="Remove"
-      (click)="removeAtIndex(i, $event)"
-      (keydown.enter)="removeAtIndex(i, $event)"
-      (keydown.space)="removeAtIndex(i, $event)"
-    >
-      ×
-    </span>
-  </div>
+  >
+  @for (chip of value; track chip; let i = $index) {
+    <div class="p-chips-token">
+      <span class="p-chips-token-label">{{ chip }}</span>
+      <span
+        class="p-chips-token-icon"
+        role="button"
+        tabindex="0"
+        aria-label="Remove"
+        (click)="removeAtIndex(i, $event)"
+        (keydown.enter)="removeAtIndex(i, $event)"
+        (keydown.space)="removeAtIndex(i, $event)"
+        >
+        ×
+      </span>
+    </div>
+  }
 
   <div class="p-chips-input-token">
     <input
@@ -31,6 +33,6 @@
       (focus)="onFocus()"
       (blur)="handleBlur($event)"
       (keyup)="keyup.emit($event)"
-    />
+      />
   </div>
 </div>

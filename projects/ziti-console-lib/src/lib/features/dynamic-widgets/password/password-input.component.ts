@@ -6,16 +6,18 @@ import {debounce} from "lodash";
     selector: 'lib-password-input',
     template: `
       <div [ngClass]="fieldClass">
-          <label for="schema_{{parentage?parentage+'_':''}}{{_idName}}"  [ngStyle]="{'color': labelColor}">{{_fieldName}}</label>
-          <input id="schema_{{parentage?parentage+'_':''}}{{_idName}}"
-                 type="password" class="jsonEntry"
-                 [required]="required"
-                 [autocomplete]="autocomplete"
-                 [ngClass]="{'error': error}"
-                 [placeholder]="placeholder" [(ngModel)]="fieldValue" (paste)="onKeyup()" (keyup)="onKeyup()" (change)="emitEvents()"/>
-          <div *ngIf="error" class="error">{{error}}</div>
+        <label for="schema_{{parentage?parentage+'_':''}}{{_idName}}"  [ngStyle]="{'color': labelColor}">{{_fieldName}}</label>
+        <input id="schema_{{parentage?parentage+'_':''}}{{_idName}}"
+          type="password" class="jsonEntry"
+          [required]="required"
+          [autocomplete]="autocomplete"
+          [ngClass]="{'error': error}"
+          [placeholder]="placeholder" [(ngModel)]="fieldValue" (paste)="onKeyup()" (keyup)="onKeyup()" (change)="emitEvents()"/>
+        @if (error) {
+          <div class="error">{{error}}</div>
+        }
       </div>
-  `,
+      `,
     styles: ['input.error {border-color:red;}', 'div.error {color:red}'],
     standalone: false
 })

@@ -23,16 +23,20 @@ import {defer, isEmpty} from "lodash";
     template: `
     <div [ngClass]="fieldClass + (!_isValid ? ' invalid' : '')">
       <label [ngStyle]="{'color': labelColor}">{{_fieldName}}</label>
-      <div  *ngFor="let item of items">
+      @for (item of items; track item) {
+        <div >
           <input type="checkbox"
-              class="jsonEntry checkbox"
-                 [ngClass]="{'error': error}"
-              [checked]="item.checked" (click)="item.checked=!item.checked;updateFieldVal();"/>
+            class="jsonEntry checkbox"
+            [ngClass]="{'error': error}"
+            [checked]="item.checked" (click)="item.checked=!item.checked;updateFieldVal();"/>
           <span class="boxlabel">{{item.name}}</span>
-      </div>
-      <div *ngIf="error" class="error">{{error}}</div>
+        </div>
+      }
+      @if (error) {
+        <div class="error">{{error}}</div>
+      }
     </div>
-  `,
+    `,
     styleUrls: ['./checkbox-list.component.scss'],
     standalone: false
 })

@@ -24,21 +24,23 @@ import {debounce, isEmpty} from "lodash";
     <div [ngClass]="fieldClass + (!_isValid ? ' invalid' : '')">
       <label for="schema_{{parentage?parentage+'_':''}}{{_idName}}"  [ngStyle]="{'color': labelColor}">{{_fieldName}}</label>
       <lib-chips-input
-          [inputId]="'schema_' + (parentage ? parentage + '_' : '') + _idName"
-          (keyup)="onKeyup($event)"
-          [(ngModel)]="fieldValue"
-          [allowDuplicate]="false"
-          [placeholder]="placeholder"
-          [addOnBlur]="true"
-          [invalid]="!_isValid"
-          [ngClass]="fieldClass + (!_isValid ? ' invalid' : '')"
-          (onBlur)="emitEventsDebounced()"
-          (onModelChange)="emitEvents()"
-          separator=","
+        [inputId]="'schema_' + (parentage ? parentage + '_' : '') + _idName"
+        (keyup)="onKeyup($event)"
+        [(ngModel)]="fieldValue"
+        [allowDuplicate]="false"
+        [placeholder]="placeholder"
+        [addOnBlur]="true"
+        [invalid]="!_isValid"
+        [ngClass]="fieldClass + (!_isValid ? ' invalid' : '')"
+        (onBlur)="emitEventsDebounced()"
+        (onModelChange)="emitEvents()"
+        separator=","
       ></lib-chips-input>
-      <div *ngIf="error" class="error">{{error}}</div>
+      @if (error) {
+        <div class="error">{{error}}</div>
+      }
     </div>
- `,
+    `,
     styleUrls: ['./text-list-input.component.scss'],
     standalone: false
 })
