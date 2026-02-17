@@ -113,8 +113,9 @@ export class TableCellTokenComponent implements ICellRendererAngularComp {
     const data = {
       jwt: this.getJWT(this.item),
       expiration: this.getEnrollmentExpiration(this.item),
-      qrCodeSize: 400,
-      identity: this.item
+      qrCodeSize: 500,
+      identity: this.item,
+      qrOnly: true
     };
     this.dialogRef = this.dialogForm.open(QrCodeComponent, {
       data: data,
