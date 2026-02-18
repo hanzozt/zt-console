@@ -30,7 +30,7 @@ import {SelectorInputComponent} from './features/dynamic-widgets/selector/select
 import {CheckboxListInputComponent} from './features/dynamic-widgets/checkbox-list/checkbox-list-input.component';
 import {TextListInputComponent} from "./features/dynamic-widgets/text-list/text-list-input.component";
 import { ChipsInputComponent } from './features/chips-input/chips-input.component';
-import {QRCodeModule} from 'angularx-qrcode';
+import {QRCodeComponent} from 'angularx-qrcode';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatButtonModule } from '@angular/material/button';
@@ -339,7 +339,7 @@ export function playerFactory() {
         MatIconModule,
         OverlayModule,
         AgGridModule,
-        QRCodeModule,
+        QRCodeComponent,
         ClickOutsideModule,
         NgJsonEditorModule,
         MatTooltipModule,
