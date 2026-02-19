@@ -44,12 +44,12 @@
   ],
   "author": {
     "name": "NetFoundry",
-    "url": "http://openziti.io",
-    "email": "openziti@netfoundry.io"
+    "url": "http://hanzozt.dev",
+    "email": "hanzozt@netfoundry.io"
   },
   "license": "Apache-2.0",
   "optionalDependencies": {
-    "@openziti/ziti-sdk-nodejs": "^0.13.3"
+    "@hanzozt/ziti-sdk-nodejs": "^0.13.3"
   },
   "peerDependencies": {
     "@angular/animations": "^16.2.12",

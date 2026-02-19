@@ -337,5 +337,5 @@ export function playerFactory() {
         },
     ],
 })
-export class OpenZitiConsoleLibModule {
+export class Hanzo ZTConsoleLibModule {
 }

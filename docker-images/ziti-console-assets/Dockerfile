@@ -1,4 +1,4 @@
-# this Dockerfile builds openziti/ziti-console-assets
+# this Dockerfile builds hanzozt/ziti-console-assets
 
 ARG NODE_VERSION=20
 
@@ -25,4 +25,4 @@ WORKDIR /usr/src/app
 
 COPY --from=builder /usr/src/app/dist/app-ziti-console ./dist/app-ziti-console
 
-CMD ["echo", "deployment guide https://openziti.io/docs/guides/deployments/docker/console"]
+CMD ["echo", "deployment guide https://hanzozt.dev/docs/guides/deployments/docker/console"]

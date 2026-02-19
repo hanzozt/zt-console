@@ -1,5 +1,5 @@
 
-# openziti/ziti-console-assets
+# hanzozt/ziti-console-assets
 
 ## Overview
 
@@ -7,7 +7,7 @@ This image is only for embedding the console in the controller container image. 
 
 ## Deploy
 
-[Here's a link to the console deployment guide](https://openziti.io/docs/guides/deployments/docker/console) that shows how to enable the console in the controller image.
+[Here's a link to the console deployment guide](https://hanzozt.dev/docs/guides/deployments/docker/console) that shows how to enable the console in the controller image.
 
 ## Build
 
@@ -23,4 +23,4 @@ docker build \
     "${PWD}"
 ```
 
-Refer to [the `openziti/ziti-controller` image](https://github.com/openziti/ziti/blob/release-next/dist/docker-images/ziti-controller/Dockerfile) to see how this image is used to build a controller image.
+Refer to [the `hanzozt/ziti-controller` image](https://github.com/hanzozt/ziti/blob/release-next/dist/docker-images/ziti-controller/Dockerfile) to see how this image is used to build a controller image.

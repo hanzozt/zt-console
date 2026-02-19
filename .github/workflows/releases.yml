@@ -53,5 +53,5 @@ jobs:
           echo "VERSION=${VERSION}" >> $GITHUB_ENV
 
       - name: Build and Publish Shared Library - ziti-console-lib
-        if: github.repository_owner == 'openziti'
+        if: github.repository_owner == 'hanzozt'
         run: ./publishSharedLib.sh

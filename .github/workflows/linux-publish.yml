@@ -59,7 +59,7 @@ jobs:
     strategy:
       matrix:
         package_name:
-          - openziti-console
+          - hanzozt-console
         arch:
           - goreleaser: amd64
             deb: amd64
@@ -76,14 +76,14 @@ jobs:
           # - archlinux #  (pacman)
     env:
       ZAC_VERSION: ${{ needs.parse-version.outputs.version }}
-      ZITI_MAINTAINER: "OpenZiti Maintainers <developers@openziti.org>"
-      ZITI_HOMEPAGE: "https://openziti.io"
+      ZITI_MAINTAINER: "Hanzo ZT Maintainers <developers@hanzozt.org>"
+      ZITI_HOMEPAGE: "https://hanzozt.dev"
       ZITI_VENDOR: "NetFoundry, Inc."
       GOARCH: ${{ matrix.arch.goreleaser }}
-      ZITI_DEB_TEST_REPO: ${{ vars.ZITI_DEB_TEST_REPO || 'zitipax-openziti-deb-test' }}
-      ZITI_RPM_TEST_REPO: ${{ vars.ZITI_RPM_TEST_REPO || 'zitipax-openziti-rpm-test' }}
-      ZITI_DEB_PROD_REPO: ${{ vars.ZITI_DEB_PROD_REPO || 'zitipax-openziti-deb-stable' }}
-      ZITI_RPM_PROD_REPO: ${{ vars.ZITI_RPM_PROD_REPO || 'zitipax-openziti-rpm-stable' }}
+      ZITI_DEB_TEST_REPO: ${{ vars.ZITI_DEB_TEST_REPO || 'zitipax-hanzozt-deb-test' }}
+      ZITI_RPM_TEST_REPO: ${{ vars.ZITI_RPM_TEST_REPO || 'zitipax-hanzozt-rpm-test' }}
+      ZITI_DEB_PROD_REPO: ${{ vars.ZITI_DEB_PROD_REPO || 'zitipax-hanzozt-deb-stable' }}
+      ZITI_RPM_PROD_REPO: ${{ vars.ZITI_RPM_PROD_REPO || 'zitipax-hanzozt-rpm-stable' }}
       NFPM_VERSION: "2.38.0"
       JFROG_CLI_VERSION: "2.63.0"
     steps:
@@ -102,7 +102,7 @@ jobs:
         with:
           nfpm_version: ${{ env.NFPM_VERSION }}
           packager: ${{ matrix.nfpm_packager }}
-          config: ./linux-packages/openziti-console/nfpm-${{ matrix.package_name }}.yaml
+          config: ./linux-packages/hanzozt-console/nfpm-${{ matrix.package_name }}.yaml
           target: ./dist/
 
       - name: upload package artifact to build summary page

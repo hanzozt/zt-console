@@ -15,7 +15,7 @@ concurrency:
 env:
   REGISTRY: docker.io
   # github.repository as <account>/<repo>
-  IMAGE_NAME: ${{ vars.ZITI_CONSOLE_IMAGE_NAME || 'openziti/ziti-console-assets' }}
+  IMAGE_NAME: ${{ vars.ZITI_CONSOLE_IMAGE_NAME || 'hanzozt/ziti-console-assets' }}
   # oldest, supported, compatible LTS (even numbered Node versions); defines the source image version used to build the
   # ziti-console container image
   NODE_VERSION: 20

@@ -5,7 +5,7 @@ set -o nounset
 set -o pipefail
 set -o xtrace
 
-: "${ZAC_IMAGE_REPO:="openziti/zac"}"
+: "${ZAC_IMAGE_REPO:="hanzozt/zac"}"
 ZAC_VERSION=$(jq -r .version package.json)
 
 if [ -z "${ZAC_VERSION}" ]; then

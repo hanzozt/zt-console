@@ -1,14 +1,14 @@
 {
-  "name": "@openziti/ziti-console-lib",
+  "name": "@hanzozt/ziti-console-lib",
   "version": "1.0.3",
   "repository": {
     "type": "git",
-    "url": "https://github.com/openziti/ziti-console"
+    "url": "https://github.com/hanzozt/ziti-console"
   },
   "author": {
     "name": "NetFoundry",
-    "url": "http://openziti.io",
-    "email": "openziti@netfoundry.io"
+    "url": "http://hanzozt.dev",
+    "email": "hanzozt@netfoundry.io"
   },
   "license": "Apache-2.0",
   "peerDependencies": {

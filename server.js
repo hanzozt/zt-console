@@ -107,7 +107,7 @@ const zitiIdentityFile = process.env.ZITI_IDENTITY_FILE;
 const integration = _.get(process, 'argv[2]') || "node-api";
 
 try {
-	ziti = await loadModule('@openziti/ziti-sdk-nodejs')
+	ziti = await loadModule('@hanzozt/ziti-sdk-nodejs')
 } catch (e) {
 	if (typeof zitiIdentityFile !== 'undefined') {
 		console.error(e);
@@ -1680,8 +1680,8 @@ app.post("/api/message", function(request, response) {
 	if (transporter) {
 		var body = params.body;
 		var subject = params.subject;
-		var from = 'ziggy@zac.openziti.org';
-		var to = 'ziggy@zac.openziti.org';
+		var from = 'ziggy@zac.hanzozt.org';
+		var to = 'ziggy@zac.hanzozt.org';
 		if (settings.from && settings.from.match(emailRegEx)) from = settings.from;
 		if (settings.to && settings.to.match(emailRegEx)) to = settings.to;
 		var mailOptions = {
@@ -1735,13 +1735,13 @@ app.post("/api/send", function(request, response) {
 			var body = '<html><body><center><h2>The following identities have been created for you</h2><div style="position:relative; display: inline-block">'+html+'</div></center></body></html>';
 			var subject = request.body.subject;
 			var to = request.body.to;
-			var from = 'ziggy@zac.openziti.org';
+			var from = 'ziggy@zac.hanzozt.org';
 			if (settings.from && settings.from.match(emailRegEx)) from = settings.from;
 			var mailOptions = {
 				from: 'Ziggy <'+from+'>',
 				to: [to],
 				subject: subject,
-				text: "OpenZiti Identities Attached",
+				text: "Hanzo ZT Identities Attached",
 				html: body,
 				list: {
 					help: from+'?subject=help',

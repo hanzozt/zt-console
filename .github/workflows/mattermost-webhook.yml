@@ -19,7 +19,7 @@ jobs:
     env:
       HAVE_SECRETS: ${{ secrets.ZHOOK_URL != '' && secrets.ZITI_MATTERMOST_IDENTITY != '' }}
     steps:
-    - uses: openziti/ziti-mattermost-action-py@main
+    - uses: hanzozt/ziti-mattermost-action-py@main
       if: github.event_name != 'pull_request_review' && env.HAVE_SECRETS == 'true'
       with:
         zitiId: ${{ secrets.ZITI_MATTERMOST_IDENTITY }}
@@ -27,7 +27,7 @@ jobs:
         eventJson: ${{ toJson(github.event) }}
         senderUsername: "GitHubZ"
         destChannel: "dev-notifications"
-    - uses: openziti/ziti-mattermost-action-py@main
+    - uses: hanzozt/ziti-mattermost-action-py@main
       if: github.event_name == 'pull_request_review' && github.event.review.state == 'approved' && env.HAVE_SECRETS == 'true'
       with:
         zitiId: ${{ secrets.ZITI_MATTERMOST_IDENTITY }}
