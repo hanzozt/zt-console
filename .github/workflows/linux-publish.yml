@@ -78,7 +78,7 @@ jobs:
       ZAC_VERSION: ${{ needs.parse-version.outputs.version }}
       ZITI_MAINTAINER: "Hanzo ZT Maintainers <developers@hanzozt.org>"
       ZITI_HOMEPAGE: "https://hanzozt.dev"
-      ZITI_VENDOR: "NetFoundry, Inc."
+      ZITI_VENDOR: "Hanzo AI, Inc."
       GOARCH: ${{ matrix.arch.goreleaser }}
       ZITI_DEB_TEST_REPO: ${{ vars.ZITI_DEB_TEST_REPO || 'ztpax-hanzozt-deb-test' }}
       ZITI_RPM_TEST_REPO: ${{ vars.ZITI_RPM_TEST_REPO || 'ztpax-hanzozt-rpm-test' }}

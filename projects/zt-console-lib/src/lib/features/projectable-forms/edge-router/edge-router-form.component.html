@@ -50,7 +50,7 @@
                                 <div class="config-container-label">TUNNELER ENABLED</div>
                                 <div (click)="tunnelerEnabledReadOnly && toggleTunnelerEnabled()"
                                     [ngClass]="{ on: formData.isTunnelerEnabled,disabled: !tunnelerEnabledReadOnly }" class="toggle"
-                                    [matTooltip]="!tunnelerEnabledReadOnly ? 'Disabled because already hosted by netfoundry ' : ''"
+                                    [matTooltip]="!tunnelerEnabledReadOnly ? 'Disabled because already hosted by Hanzo ZT ' : ''"
                                     matTooltipPosition="above" style="pointer-events: auto;">
                                     <span [hidden]="!formData.isTunnelerEnabled" class="on-label">YES</span>
                                     <span [hidden]="formData.isTunnelerEnabled" class="off-label">NO</span>
