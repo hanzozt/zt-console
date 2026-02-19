@@ -1,9 +1,9 @@
 export type DefaultAppConfig = {
     tunnelerEnabledReadOnly: boolean;
-    isHanzo ZT?: boolean;
+    isZt?: boolean;
 };
 
 export const DEFAULT_APP_CONFIG_PROP = {
     tunnelerEnabledReadOnly: true,
-    isHanzo ZT: true
+    isZt: true
 };

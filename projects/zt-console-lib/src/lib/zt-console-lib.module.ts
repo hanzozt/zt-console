@@ -337,5 +337,5 @@ export function playerFactory() {
         },
     ],
 })
-export class Hanzo ZTConsoleLibModule {
+export class ZtConsoleLibModule {
 }

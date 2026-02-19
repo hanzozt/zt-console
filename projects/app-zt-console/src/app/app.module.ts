@@ -27,7 +27,7 @@ import {environment} from "./environments/environment";
 
 import {
     NoopTabInterceptorService,
-    Hanzo ZTConsoleLibModule,
+    ZtConsoleLibModule,
     SettingsService,
     GrowlerModule,
     DeactivateGuardService,
@@ -94,7 +94,7 @@ if (environment.nodeIntegration) {
         MatDialogModule,
         HttpClientModule,
         AppRoutingModule,
-        Hanzo ZTConsoleLibModule,
+        ZtConsoleLibModule,
         GrowlerModule,
         LoggerModule.forRoot({level: NgxLoggerLevel.DEBUG, serverLogLevel: NgxLoggerLevel.ERROR}),
         OAuthModule.forRoot()
