@@ -42,6 +42,7 @@ export class LoginComponent implements OnInit, OnDestroy {
     helpText;
     controllerInvalid = false;
     extJwtSigners = [];
+    showAdminLogin = false;
     oauthLoading = '';
     errors: any = {};
     private subscription = new Subscription();
