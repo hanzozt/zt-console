@@ -37,7 +37,7 @@ export class GeolocateComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.map = L.map('MainMap', { zoomControl: false });
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      attribution: '&copy; NetFoundry Inc.'
+      attribution: '&copy; Hanzo AI'
     }).addTo(this.map);
     this.map.setView(new L.LatLng(41.850033, -87.6500523), 4);
 

@@ -139,8 +139,8 @@ export class LoginComponent implements OnInit, OnDestroy {
 
     handleControllerInvalid(controllerInvalid = false) {
         if (controllerInvalid) {
-            this.helpText = `NOTE: The controller url is relative to the server running the Ziti Administration Console. \n
-                    For example, if you are running the zt controller and ZAC inside docker, the controller URL should be reachable from the same server that's hosting ZAC. \n
+            this.helpText = `NOTE: The controller url is relative to the server running the Zero Trust Console. \n
+                    For example, if you are running the zt controller and ZTC inside docker, the controller URL should be reachable from the same server that's hosting ZTC. \n
                     In this case, that would be the hostname of the container running the zt controller image. \n `;
             this.controllerInvalid = true;
         } else {

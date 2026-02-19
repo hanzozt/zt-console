@@ -27,7 +27,7 @@ import {ZAC_VERSION} from "zt-console-lib";
     styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-    title = 'Ziti Admin Console';
+    title = 'Zero Trust Console';
     version = '';
     isAuthorized = false;
     displayNav = true;
@@ -36,7 +36,7 @@ export class AppComponent implements OnInit {
     loading = true;
     darkmodeEnabled = false;
 
-    headerTitle = 'Ziti Admin Console';
+    headerTitle = 'Zero Trust Console';
 
     constructor(
         @Inject(SETTINGS_SERVICE) private settingsService: SettingsServiceClass,
@@ -109,6 +109,6 @@ export class AppComponent implements OnInit {
     }
 
     get versionDetails() {
-      return "Controller: "+(this.settingsService?.ztSemver || '') +" ZAC: "+(ZAC_VERSION?.version || '');
+      return "Controller: "+(this.settingsService?.ztSemver || '') +" ZTC: "+(ZAC_VERSION?.version || '');
     }
 }

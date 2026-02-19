@@ -6,9 +6,9 @@
     "url": "https://github.com/hanzozt/zt-console"
   },
   "author": {
-    "name": "NetFoundry",
-    "url": "http://hanzozt.dev",
-    "email": "hanzozt@netfoundry.io"
+    "name": "Hanzo AI",
+    "url": "https://hanzo.ai",
+    "email": "zt@hanzo.ai"
   },
   "license": "Apache-2.0",
   "peerDependencies": {

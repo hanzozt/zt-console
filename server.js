@@ -155,15 +155,15 @@ var corsOptions = {
 var helmetOptions = {
     contentSecurityPolicy: {
       directives: {
-        defaultSrc: ["'self'", 'www.googletagmanager.com', 'openstreetmap.org'],
-        styleSrc: ["'self'", 'www.googletagmanager.com', 'www.google-analytics.com', 'openstreetmap.org', "'unsafe-inline'"],
-        scriptSrc: ["'self'", 'www.googletagmanager.com', 'www.google-analytics.com', 'openstreetmap.org', "'unsafe-inline'"],
-		scriptSrcAttr: ["'self'", 'www.googletagmanager.com', 'www.google-analytics.com', 'openstreetmap.org', "'unsafe-inline'"],
-        imgSrc: ["'self'", 'www.googletagmanager.com', 'www.google-analytics.com', 'openstreetmap.org', 'b.tile.opernstreetmap.org', 'data:', 'blob:', 'https:'],
-        connectSrc: ["'self'", 'www.googletagmanager.com', 'www.google-analytics.com', 'openstreetmap.org', 'ws:', 'wss:'],
-        frameSrc: ["'self'", 'www.googletagmanager.com', 'openstreetmap.org'],
-        frameAncestors: ["'self'", 'www.googletagmanager.com', 'openstreetmap.org'],
-        mediaSrc: ["'self'", 'www.googletagmanager.com', 'openstreetmap.org', 'data:', 'blob:', 'https:'],
+        defaultSrc: ["'self'", 'openstreetmap.org'],
+        styleSrc: ["'self'", 'openstreetmap.org', "'unsafe-inline'"],
+        scriptSrc: ["'self'", 'openstreetmap.org', "'unsafe-inline'"],
+		scriptSrcAttr: ["'self'", 'openstreetmap.org', "'unsafe-inline'"],
+        imgSrc: ["'self'", 'openstreetmap.org', 'b.tile.opernstreetmap.org', 'data:', 'blob:', 'https:'],
+        connectSrc: ["'self'", 'openstreetmap.org', 'ws:', 'wss:'],
+        frameSrc: ["'self'", 'openstreetmap.org'],
+        frameAncestors: ["'self'", 'openstreetmap.org'],
+        mediaSrc: ["'self'", 'openstreetmap.org', 'data:', 'blob:', 'https:'],
       },
     },
     frameguard: { action: 'SAMEORIGIN' },
@@ -192,7 +192,7 @@ app.use(bodyParser.json());
 app.use(fileUpload());
 app.use(session({ 
 	store: new sessionStore({}), 
-	secret: 'NetFoundryZiti', 
+	secret: 'HanzoZeroTrust',
 	retries: 0, 
 	resave: true, 
 	saveUninitialized: true, 
@@ -1664,7 +1664,7 @@ app.post("/api/series", function(request, response) {
 
 
 /***
- * Send a message to NetFoundry to report errors or request features
+ * Send a message to report errors or request features
  */
 app.post("/api/message", function(request, response) {
 	var type = request.body.type;
@@ -1674,7 +1674,7 @@ app.post("/api/message", function(request, response) {
 
 	var params = {
 		body: "A "+type+" message was set to you by "+from+" at "+(new Date())+" with email "+email+": "+message,
-		subject: "NetFoundry Ziti - Message"
+		subject: "Hanzo ZT - Message"
 	};
 	
 	if (transporter) {
@@ -1686,7 +1686,7 @@ app.post("/api/message", function(request, response) {
 		if (settings.to && settings.to.match(emailRegEx)) to = settings.to;
 		var mailOptions = {
 			from: 'Ziggy <'+from+'>',
-			to: "jeremy.tellier@netfoundry.io",
+			to: "zt@hanzo.ai",
 			subject: subject,
 			html: body
 		};
@@ -1703,7 +1703,7 @@ app.post("/api/message", function(request, response) {
 			}
 		});
 	} else {
-		external.post("https://sendmail.netfoundry.io/message", {json: params, rejectUnauthorized: rejectUnauthorized }, function(err, res, body) {
+		external.post("https://api.hanzo.ai/zt/message", {json: params, rejectUnauthorized: rejectUnauthorized }, function(err, res, body) {
 			if (err) response.json({ errors: err });
 			else {
 				if (body.error) response.json({ errors: body.error });
@@ -1715,7 +1715,7 @@ app.post("/api/message", function(request, response) {
 
 
 /***
- * Send a message to NetFoundry to report errors or request features
+ * Send a message to report errors or request features
  */
 app.post("/api/send", function(request, response) {
 	if (transporter) {
@@ -1767,7 +1767,7 @@ app.post("/api/send", function(request, response) {
 			});
 		}
 	} else {
-		external.post("https://sendmail.netfoundry.io/send", {json: request.body, rejectUnauthorized: rejectUnauthorized }, function(err, res, body) {
+		external.post("https://api.hanzo.ai/zt/send", {json: request.body, rejectUnauthorized: rejectUnauthorized }, function(err, res, body) {
 			if (err) response.json({ errors: err });
 			else {
 				if (body.error) response.json({ errors: body.error });
@@ -1815,11 +1815,11 @@ function StartServer(startupPort) {
 	if (bindIP=="" || bindIP==null) {
 		if (ztfied) {
 			server = app.listen(undefined, function() {
-				console.log("Ziti Admin Console is now listening for incoming Ziti Connections");
+				console.log("Zero Trust Console is now listening for incoming Ziti Connections");
 			});
 		} else {
 			server = app.listen(startupPort, function() {
-				console.log("Ziti Admin Console is now listening on port "+startupPort);
+				console.log("Zero Trust Console is now listening on port "+startupPort);
 			}).on('error', function(err) {
 				if (err.code=="EADDRINUSE") {
 					maxAttempts--;
@@ -1834,11 +1834,11 @@ function StartServer(startupPort) {
 	} else {
 		if (ztfied) {
 			server = app.listen(undefined, bindIP, function() {
-				console.log("Ziti Admin Console is now listening for incoming Ziti Connections");
+				console.log("Zero Trust Console is now listening for incoming Ziti Connections");
 			});
 		} else {
 			server = app.listen(startupPort, bindIP, function() {
-				console.log("Ziti Admin Console is now listening on port "+startupPort);
+				console.log("Zero Trust Console is now listening on port "+startupPort);
 			}).on('error', function(err) {
 				if (err.code=="EADDRINUSE") {
 					maxAttempts--;

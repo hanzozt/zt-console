@@ -12,7 +12,7 @@ if [[ "${ZAC_SERVER_KEY}" != "" ]]; then
     sleep 3
   done
 
-  echo "ZAC will use this key for TLS: ${ZAC_SERVER_KEY}"
+  echo "ZTC will use this key for TLS: ${ZAC_SERVER_KEY}"
   ln -s "${ZAC_SERVER_KEY}" /usr/src/app/server.key
 fi
 if [[ "${ZAC_SERVER_CERT_CHAIN}" != "" ]]; then
@@ -21,7 +21,7 @@ if [[ "${ZAC_SERVER_CERT_CHAIN}" != "" ]]; then
     sleep 3
   done
 
-  echo "ZAC will present this pem for TLS: ${ZAC_SERVER_CERT_CHAIN}"
+  echo "ZTC will present this pem for TLS: ${ZAC_SERVER_CERT_CHAIN}"
   ln -s "${ZAC_SERVER_CERT_CHAIN}" /usr/src/app/server.chain.pem
 fi
 
@@ -67,15 +67,15 @@ fi
 fi
 
 if [[ "$1" == "classic" ]]; then
-  echo "Running Classic ZAC Application"
+  echo "Running Classic ZTC Application"
   exec node /usr/src/app/server.js classic
 elif [[ "$1" == "edge-api" ]]; then
-  echo "Running ZAC server with Edge API integration"
+  echo "Running ZTC server with Edge API integration"
   exec node /usr/src/app/server-edge.js
 elif (( $#)); then
   echo "Running: server.js $*"
   exec node /usr/src/app/server.js $*
 else
-  echo "Running ZAC Server with Node API Integration"
+  echo "Running ZTC Server with Node API Integration"
   exec node /usr/src/app/server.js node-api
 fi

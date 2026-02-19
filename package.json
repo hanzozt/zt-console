@@ -1,7 +1,7 @@
 {
-  "name": "io.netfoundry.zac",
+  "name": "ai.hanzo.ztc",
   "version": "4.0.3",
-  "description": "Ziti Administration Console",
+  "description": "Zero Trust Console",
   "main": "server.js",
   "type": "module",
   "scripts": {
@@ -35,17 +35,17 @@
     "postinstall": "ls && node ./version.js && ng build zt-console-lib"
   },
   "config": {
-    "imageRepo": "netfoundry/zt-console",
-    "imageName": "zac",
+    "imageRepo": "hanzozt/zt-console",
+    "imageName": "ztc",
     "imagePort": "1480"
   },
   "keywords": [
     "zt"
   ],
   "author": {
-    "name": "NetFoundry",
-    "url": "http://hanzozt.dev",
-    "email": "hanzozt@netfoundry.io"
+    "name": "Hanzo AI",
+    "url": "https://hanzo.ai",
+    "email": "zt@hanzo.ai"
   },
   "license": "Apache-2.0",
   "optionalDependencies": {
