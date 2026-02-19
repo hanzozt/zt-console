@@ -4,46 +4,46 @@
   "newProjectRoot": "projects",
 
   "projects": {
-    "ziti-console": {
+    "zt-console": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
           "style": "scss"
         }
       },
-      "root": "projects/app-ziti-console",
-      "sourceRoot": "projects/app-ziti-console/src",
+      "root": "projects/app-zt-console",
+      "sourceRoot": "projects/app-zt-console/src",
       "prefix": "app",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/app-ziti-console",
-            "index": "projects/app-ziti-console/src/index.html",
-            "main": "projects/app-ziti-console/src/main.ts",
+            "outputPath": "dist/app-zt-console",
+            "index": "projects/app-zt-console/src/index.html",
+            "main": "projects/app-zt-console/src/main.ts",
             "polyfills": [
               "zone.js"
             ],
-            "tsConfig": "projects/app-ziti-console/tsconfig.app.json",
+            "tsConfig": "projects/app-zt-console/tsconfig.app.json",
             "inlineStyleLanguage": "scss",
             "assets": [
-              "projects/app-ziti-console/src/favicon.ico",
-              "projects/app-ziti-console/src/assets",
+              "projects/app-zt-console/src/favicon.ico",
+              "projects/app-zt-console/src/assets",
               {
                 "glob": "**/*",
-                "input": "./node_modules/ziti-console-lib/assets/",
+                "input": "./node_modules/zt-console-lib/assets/",
                 "output": "/assets"
               },
               {
                 "glob": "**/*",
-                "input": "./node_modules/ziti-console-lib/html/",
+                "input": "./node_modules/zt-console-lib/html/",
                 "output": "/assets/pages"
               }
             ],
             "styles": [
-              "projects/ziti-console-lib/src/lib/shared-assets/styles/global.scss",
-              "projects/ziti-console-lib/src/lib/shared-assets/styles/icons.scss",
-              "projects/app-ziti-console/src/styles.scss",
+              "projects/zt-console-lib/src/lib/shared-assets/styles/global.scss",
+              "projects/zt-console-lib/src/lib/shared-assets/styles/icons.scss",
+              "projects/app-zt-console/src/styles.scss",
               "node_modules/primeng/resources/themes/saga-blue/theme.css",
               "node_modules/primeng/resources/primeng.min.css",
               "node_modules/primeicons/primeicons.css"
@@ -108,8 +108,8 @@
             "nodeIntegration": {
               "fileReplacements": [
                 {
-                  "replace": "projects/app-ziti-console/src/app/environments/environment.ts",
-                  "with": "projects/app-ziti-console/src/app/environments/environment.node.ts"
+                  "replace": "projects/app-zt-console/src/app/environments/environment.ts",
+                  "with": "projects/app-zt-console/src/app/environments/environment.node.ts"
                 }
               ],
               "budgets": [
@@ -138,10 +138,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "ziti-console:build:production"
+              "browserTarget": "zt-console:build:production"
             },
             "development": {
-              "browserTarget": "ziti-console:build:development"
+              "browserTarget": "zt-console:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -149,7 +149,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "ziti-console:build"
+            "browserTarget": "zt-console:build"
           }
         },
         "test": {
@@ -159,60 +159,60 @@
               "zone.js",
               "zone.js/testing"
             ],
-            "tsConfig": "projects/app-ziti-console/tsconfig.spec.json",
+            "tsConfig": "projects/app-zt-console/tsconfig.spec.json",
             "inlineStyleLanguage": "scss",
             "assets": [
-              "projects/app-ziti-console/src/favicon.ico",
-              "projects/app-ziti-console/src/assets"
+              "projects/app-zt-console/src/favicon.ico",
+              "projects/app-zt-console/src/assets"
             ],
             "styles": [
-              "projects/app-ziti-console/src/styles.scss"
+              "projects/app-zt-console/src/styles.scss"
             ],
             "scripts": []
           }
         }
       }
     },
-    "ziti-console-node": {
+    "zt-console-node": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
           "style": "scss"
         }
       },
-      "root": "projects/app-ziti-console",
-      "sourceRoot": "projects/app-ziti-console/src",
+      "root": "projects/app-zt-console",
+      "sourceRoot": "projects/app-zt-console/src",
       "prefix": "app",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/app-ziti-console-node",
-            "index": "projects/app-ziti-console/src/index.html",
-            "main": "projects/app-ziti-console/src/main.ts",
+            "outputPath": "dist/app-zt-console-node",
+            "index": "projects/app-zt-console/src/index.html",
+            "main": "projects/app-zt-console/src/main.ts",
             "polyfills": [
               "zone.js"
             ],
-            "tsConfig": "projects/app-ziti-console/tsconfig.app.json",
+            "tsConfig": "projects/app-zt-console/tsconfig.app.json",
             "inlineStyleLanguage": "scss",
             "assets": [
-              "projects/app-ziti-console/src/favicon.ico",
-              "projects/app-ziti-console/src/assets",
+              "projects/app-zt-console/src/favicon.ico",
+              "projects/app-zt-console/src/assets",
               {
                 "glob": "**/*",
-                "input": "./node_modules/ziti-console-lib/assets/",
+                "input": "./node_modules/zt-console-lib/assets/",
                 "output": "/assets"
               },
               {
                 "glob": "**/*",
-                "input": "./node_modules/ziti-console-lib/html/",
+                "input": "./node_modules/zt-console-lib/html/",
                 "output": "/assets/pages"
               }
             ],
             "styles": [
-              "projects/ziti-console-lib/src/lib/shared-assets/styles/global.scss",
-              "projects/ziti-console-lib/src/lib/shared-assets/styles/icons.scss",
-              "projects/app-ziti-console/src/styles.scss",
+              "projects/zt-console-lib/src/lib/shared-assets/styles/global.scss",
+              "projects/zt-console-lib/src/lib/shared-assets/styles/icons.scss",
+              "projects/app-zt-console/src/styles.scss",
               "node_modules/primeng/resources/themes/saga-blue/theme.css",
               "node_modules/primeng/resources/primeng.min.css",
               "node_modules/primeicons/primeicons.css"
@@ -251,8 +251,8 @@
               },
               "fileReplacements": [
                 {
-                  "replace": "projects/app-ziti-console/src/app/environments/environment.ts",
-                  "with": "projects/app-ziti-console/src/app/environments/environment.node.ts"
+                  "replace": "projects/app-zt-console/src/app/environments/environment.ts",
+                  "with": "projects/app-zt-console/src/app/environments/environment.node.ts"
                 }
               ]
             },
@@ -275,8 +275,8 @@
               },
               "fileReplacements": [
                 {
-                  "replace": "projects/app-ziti-console/src/app/environments/environment.ts",
-                  "with": "projects/app-ziti-console/src/app/environments/environment.node.ts"
+                  "replace": "projects/app-zt-console/src/app/environments/environment.ts",
+                  "with": "projects/app-zt-console/src/app/environments/environment.node.ts"
                 }
               ]
             }
@@ -287,10 +287,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "ziti-console:build:production"
+              "browserTarget": "zt-console:build:production"
             },
             "development": {
-              "browserTarget": "ziti-console:build:development"
+              "browserTarget": "zt-console:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -298,7 +298,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "ziti-console:build"
+            "browserTarget": "zt-console:build"
           }
         },
         "test": {
@@ -308,37 +308,37 @@
               "zone.js",
               "zone.js/testing"
             ],
-            "tsConfig": "projects/app-ziti-console/tsconfig.spec.json",
+            "tsConfig": "projects/app-zt-console/tsconfig.spec.json",
             "inlineStyleLanguage": "scss",
             "assets": [
-              "projects/app-ziti-console/src/favicon.ico",
-              "projects/app-ziti-console/src/assets"
+              "projects/app-zt-console/src/favicon.ico",
+              "projects/app-zt-console/src/assets"
             ],
             "styles": [
-              "projects/app-ziti-console/src/styles.scss"
+              "projects/app-zt-console/src/styles.scss"
             ],
             "scripts": []
           }
         }
       }
     },
-    "ziti-console-lib": {
+    "zt-console-lib": {
       "projectType": "library",
-      "root": "projects/ziti-console-lib",
-      "sourceRoot": "projects/ziti-console-lib/src",
+      "root": "projects/zt-console-lib",
+      "sourceRoot": "projects/zt-console-lib/src",
       "prefix": "lib",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:ng-packagr",
           "options": {
-            "project": "projects/ziti-console-lib/ng-package.json"
+            "project": "projects/zt-console-lib/ng-package.json"
           },
           "configurations": {
             "production": {
-              "tsConfig": "projects/ziti-console-lib/tsconfig.lib.prod.json"
+              "tsConfig": "projects/zt-console-lib/tsconfig.lib.prod.json"
             },
             "development": {
-              "tsConfig": "projects/ziti-console-lib/tsconfig.lib.json"
+              "tsConfig": "projects/zt-console-lib/tsconfig.lib.json"
             }
           },
           "defaultConfiguration": "development"
@@ -346,7 +346,7 @@
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "tsConfig": "projects/ziti-console-lib/tsconfig.spec.json",
+            "tsConfig": "projects/zt-console-lib/tsconfig.spec.json",
             "polyfills": [
               "zone.js",
               "zone.js/testing"

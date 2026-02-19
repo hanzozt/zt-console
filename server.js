@@ -38,8 +38,8 @@ import _ from 'lodash';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const sessionStore = sessionStoreFactory(session);
-const __assets = '/dist/ziti-console-lib/assets';
-const __html = '/dist/ziti-console-lib/assets/html';
+const __assets = '/dist/zt-console-lib/assets';
+const __html = '/dist/zt-console-lib/assets/html';
 
 const rateLimiter = (windowMs, maxRequests) => {
 	const requests = {};
@@ -100,27 +100,27 @@ const processControllerUrls = (urlString) => {
 	return validUrls;
 };
 
-var ziti;
-const zitiServiceName = process.env.ZITI_SERVICE_NAME || 'zac';
-const zitiIdentityFile = process.env.ZITI_IDENTITY_FILE;
+var zt;
+const ztServiceName = process.env.ZITI_SERVICE_NAME || 'zac';
+const ztIdentityFile = process.env.ZITI_IDENTITY_FILE;
 
 const integration = _.get(process, 'argv[2]') || "node-api";
 
 try {
-	ziti = await loadModule('@hanzozt/ziti-sdk-nodejs')
+	zt = await loadModule('@hanzozt/zt-sdk-nodejs')
 } catch (e) {
-	if (typeof zitiIdentityFile !== 'undefined') {
+	if (typeof ztIdentityFile !== 'undefined') {
 		console.error(e);
 		process.exit();
 	}
 }
 
-var zitified = false;
-if ((typeof zitiIdentityFile !== 'undefined') && (typeof zitiServiceName !== 'undefined')) {
-	zitified = true;
+var ztfied = false;
+if ((typeof ztIdentityFile !== 'undefined') && (typeof ztServiceName !== 'undefined')) {
+	ztfied = true;
 }
-if (zitified) {
-	await ziti.init( zitiIdentityFile ).catch(( err ) => { process.exit(); }); // Authenticate ourselves onto the Ziti network using the specified identity file
+if (ztfied) {
+	await zt.init( ztIdentityFile ).catch(( err ) => { process.exit(); }); // Authenticate ourselves onto the Ziti network using the specified identity file
 }
 
 const packageJsonRaw = fs.readFileSync("./package.json", 'utf8');
@@ -143,8 +143,8 @@ var errors = {
  */
 var app = express();								// using raw  networking
 
-if (zitified) {
-	app = ziti.express( express, zitiServiceName );	// using Ziti networking
+if (ztfied) {
+	app = zt.express( express, ztServiceName );	// using Ziti networking
 }
 var corsOptions = {
   origin: '*',
@@ -364,12 +364,12 @@ app.post("/api/login", function(request, response) {
 if (integration === 'edge-api') {
     app.use(bodyParser.urlencoded({extended:false}));
 
-    app.use('/', express.static(__dirname + '/dist/app-ziti-console'));
-    app.use('/:name', express.static(__dirname + '/dist/app-ziti-console'));
+    app.use('/', express.static(__dirname + '/dist/app-zt-console'));
+    app.use('/:name', express.static(__dirname + '/dist/app-zt-console'));
 } else {
     app.use(bodyParser.urlencoded({extended:false}));
-    app.use('/', express.static(__dirname + '/dist/app-ziti-console-node'));
-    app.use('/:name', express.static(__dirname + '/dist/app-ziti-console-node'));
+    app.use('/', express.static(__dirname + '/dist/app-zt-console-node'));
+    app.use('/:name', express.static(__dirname + '/dist/app-zt-console-node'));
 }
 
 app.post("/api/logout", function(request, response) {
@@ -919,8 +919,8 @@ app.post("/api/service", async function(request, response) {
 		var host = request.body.host;
 		var port = Number(request.body.port);
 		var encrypt = request.body.encrypt;
-		var zitiHost = request.body.zitiHost;
-		var zitiPort = Number(request.body.zitiPort);
+		var ztHost = request.body.ztHost;
+		var ztPort = Number(request.body.ztPort);
 		var hosted = request.body.hosted;
 		var access = request.body.access;
 
@@ -938,12 +938,12 @@ app.post("/api/service", async function(request, response) {
 			protocol: protocol
 		};
 		var clientConfig = {
-			hostname: zitiHost,
-			port: zitiPort
+			hostname: ztHost,
+			port: ztPort
 		};
 
-		var clientConfigId = await GetConfigId(request, response, serviceUrl, user, "ziti-tunneler-client.v1");
-		var serverConfigId = await GetConfigId(request, response, serviceUrl, user, "ziti-tunneler-server.v1");
+		var clientConfigId = await GetConfigId(request, response, serviceUrl, user, "zt-tunneler-client.v1");
+		var serverConfigId = await GetConfigId(request, response, serviceUrl, user, "zt-tunneler-server.v1");
 		
 		var serverData = await CreateConfig(request, response, user, serviceUrl, serverConfigId, serverName, serverConfig);
 		var clientData = await CreateConfig(request, response, user, serviceUrl, clientConfigId, clientName, clientConfig);
@@ -1002,7 +1002,7 @@ async function CreateClientPolicy(request, respone, url, user, name, serviceId, 
 					log("Saving As: POST "+JSON.stringify(params));
 					external(url+"/service-policies", {method: "POST", json: params, rejectUnauthorized: rejectUnauthorized, headers: { "zt-session": request.session.user } }, function(err, res, body) {
 						log(JSON.stringify(body));
-						let cli = "ziti edge create service-policy '"+name+"' Dial --service-roles '"+serviceId+"' --identity-roles '"+access.toString()+"'";
+						let cli = "zt edge create service-policy '"+name+"' Dial --service-roles '"+serviceId+"' --identity-roles '"+access.toString()+"'";
 						let serviceCall = {
 							url: url+"/service-policies",
 							params: params
@@ -1036,7 +1036,7 @@ async function CreateServerPolicy(request, respone, url, user, name, serviceId, 
 					log("Saving As: POST "+JSON.stringify(params));
 					external(url+"/service-policies", {method: "POST", json: params, rejectUnauthorized: rejectUnauthorized, headers: { "zt-session": request.session.user } }, function(err, res, body) {
 						log(JSON.stringify(body));
-						let cli = "ziti edge create service-policy '"+name+"' Bind --semantic AnyOf --service-roles '"+serviceId+"' --identity-roles '"+hosted.toString()+"'";
+						let cli = "zt edge create service-policy '"+name+"' Bind --semantic AnyOf --service-roles '"+serviceId+"' --identity-roles '"+hosted.toString()+"'";
 						let serviceCall = {
 							url: url+"/service-policies",
 							params: params
@@ -1067,7 +1067,7 @@ async function CreateService(request, respone, url, user, name, encrypt, serverI
 				log("Saving As: POST "+JSON.stringify(params));
 				external(url+"/services", {method: "POST", json: params, rejectUnauthorized: rejectUnauthorized, headers: { "zt-session": request.session.user } }, function(err, res, body) {
 					log(JSON.stringify(body));
-					let cli = "ziti edge create service '"+name+"' --configs '"+serverId+","+clientId+"'";
+					let cli = "zt edge create service '"+name+"' --configs '"+serverId+","+clientId+"'";
 					let serviceCall = {
 						url: url+"/services",
 						params: params
@@ -1127,7 +1127,7 @@ async function CreateConfig(request, response, user, url, configId, name, data, 
 					index++;
 					if (body.error) resolve(CreateConfig(request, response, user, url, configId, name, data, index));
 					else if (body.data) {
-						let cli = "ziti edge create config '"+params.name+"' '"+configId+"' '"+JSON.stringify(data).split('"').join('\\"')+"'";
+						let cli = "zt edge create config '"+params.name+"' '"+configId+"' '"+JSON.stringify(data).split('"').join('\\"')+"'";
 						let serviceCall = {
 							url: url+"/configs",
 							params: params
@@ -1179,7 +1179,7 @@ app.post("/api/identity", function(request, response) {
 								results.cli = [];
 								results.services = [];
 								
-								let cli = "ziti edge create identity device \'"+name+"\'";
+								let cli = "zt edge create identity device \'"+name+"\'";
 								if (request.body.roles) cli += " -a \'"+request.body.roles.toString()+"\'";
 								results.cli.push(cli);
 
@@ -1604,7 +1604,7 @@ app.post("/api/average", function(request, response) {
 	const influx = new Influx.InfluxDB({
 		host: domain,
 		port: 8086,
-		database: 'ziti'
+		database: 'zt'
 	});
 
 	var query = "select MEAN(mean) from \""+source+"\" WHERE source='"+id+"'";
@@ -1640,7 +1640,7 @@ app.post("/api/series", function(request, response) {
 	const influx = new Influx.InfluxDB({
 		host: domain,
 		port: 8086,
-		database: 'ziti'
+		database: 'zt'
 	});
 
 	var query = "select MEAN(mean) from \""+source+"\" WHERE source='"+id+"' AND time > now() - 6d GROUP BY time(1d)";
@@ -1813,7 +1813,7 @@ app.use((err, request, response, next) => {
 
 function StartServer(startupPort) {
 	if (bindIP=="" || bindIP==null) {
-		if (zitified) {
+		if (ztfied) {
 			server = app.listen(undefined, function() {
 				console.log("Ziti Admin Console is now listening for incoming Ziti Connections");
 			});
@@ -1832,7 +1832,7 @@ function StartServer(startupPort) {
 			});
 		}
 	} else {
-		if (zitified) {
+		if (ztfied) {
 			server = app.listen(undefined, bindIP, function() {
 				console.log("Ziti Admin Console is now listening for incoming Ziti Connections");
 			});

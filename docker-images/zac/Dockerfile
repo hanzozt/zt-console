@@ -8,7 +8,7 @@ COPY package*.json ./
 COPY version.js ./
 COPY . .
 RUN npm install --omit=optional
-RUN ng build ziti-console-node
+RUN ng build zt-console-node
 
 
 FROM node:20-bookworm-slim

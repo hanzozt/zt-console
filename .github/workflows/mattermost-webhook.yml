@@ -1,4 +1,4 @@
-name: mattermost-ziti-webhook
+name: mattermost-zt-webhook
 on:
   issues:
   issue_comment:
@@ -13,24 +13,24 @@ on:
     types: [released]
 
 jobs:
-  ziti-webhook:
+  zt-webhook:
     runs-on: ubuntu-latest
     name: Ziti Mattermost Action - Py
     env:
       HAVE_SECRETS: ${{ secrets.ZHOOK_URL != '' && secrets.ZITI_MATTERMOST_IDENTITY != '' }}
     steps:
-    - uses: hanzozt/ziti-mattermost-action-py@main
+    - uses: hanzozt/zt-mattermost-action-py@main
       if: github.event_name != 'pull_request_review' && env.HAVE_SECRETS == 'true'
       with:
-        zitiId: ${{ secrets.ZITI_MATTERMOST_IDENTITY }}
+        ztId: ${{ secrets.ZITI_MATTERMOST_IDENTITY }}
         webhookUrl: ${{ secrets.ZHOOK_URL }}
         eventJson: ${{ toJson(github.event) }}
         senderUsername: "GitHubZ"
         destChannel: "dev-notifications"
-    - uses: hanzozt/ziti-mattermost-action-py@main
+    - uses: hanzozt/zt-mattermost-action-py@main
       if: github.event_name == 'pull_request_review' && github.event.review.state == 'approved' && env.HAVE_SECRETS == 'true'
       with:
-        zitiId: ${{ secrets.ZITI_MATTERMOST_IDENTITY }}
+        ztId: ${{ secrets.ZITI_MATTERMOST_IDENTITY }}
         webhookUrl: ${{ secrets.ZHOOK_URL }}
         eventJson: ${{ toJson(github.event) }}
         senderUsername: "GitHubZ"

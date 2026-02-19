@@ -5,7 +5,7 @@ on:
     branches: [ "main" ]
     tags: 
       # Publish semver tags as releases.
-      - app-ziti-console-v*.*.*
+      - app-zt-console-v*.*.*
 
 # cancel older, redundant runs of same workflow on same branch
 concurrency:
@@ -15,9 +15,9 @@ concurrency:
 env:
   REGISTRY: docker.io
   # github.repository as <account>/<repo>
-  IMAGE_NAME: ${{ vars.ZITI_CONSOLE_IMAGE_NAME || 'hanzozt/ziti-console-assets' }}
+  IMAGE_NAME: ${{ vars.ZITI_CONSOLE_IMAGE_NAME || 'hanzozt/zt-console-assets' }}
   # oldest, supported, compatible LTS (even numbered Node versions); defines the source image version used to build the
-  # ziti-console container image
+  # zt-console container image
   NODE_VERSION: 20
 
 jobs:
@@ -55,13 +55,13 @@ jobs:
             type=raw,value=${{ github.ref_name }},enable={{is_default_branch}}
 
             # set "latest" tag on releases
-            type=raw,value=latest,enable=${{startsWith(github.ref_name, 'app-ziti-console-v')}}
+            type=raw,value=latest,enable=${{startsWith(github.ref_name, 'app-zt-console-v')}}
 
             # set (e.g., "1.2.3") semver tag on releases
-            type=match,pattern=app-ziti-console-v(.*),group=1,enable=${{startsWith(github.ref_name, 'app-ziti-console-v')}}
+            type=match,pattern=app-zt-console-v(.*),group=1,enable=${{startsWith(github.ref_name, 'app-zt-console-v')}}
 
             # set (e.g., "v1") major version tag on releases
-            type=match,pattern=app-ziti-console-(v\d+)\..*,group=1,enable=${{startsWith(github.ref_name, 'app-ziti-console-v')}}
+            type=match,pattern=app-zt-console-(v\d+)\..*,group=1,enable=${{startsWith(github.ref_name, 'app-zt-console-v')}}
 
       - name: Set Up QEMU
         uses: docker/setup-qemu-action@v3
@@ -78,14 +78,14 @@ jobs:
         uses: docker/build-push-action@v6
         with:
           context: ${{ github.workspace }}/
-          file: ./docker-images/ziti-console-assets/Dockerfile
+          file: ./docker-images/zt-console-assets/Dockerfile
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
           platforms: linux/amd64,linux/arm64
           cache-from: type=registry,ref=${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:buildcache
           cache-to: type=registry,ref=${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:buildcache,mode=max
           push: true
-          # ziti controller always binds at /zac and trailing slash is necessary to qualify Angular runtime paths in index.html
+          # zt controller always binds at /zac and trailing slash is necessary to qualify Angular runtime paths in index.html
           build-args: |
             NODE_VERSION=${{ env.NODE_VERSION }}
             BASE_HREF=/zac/

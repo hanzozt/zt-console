@@ -29,14 +29,14 @@
       "dom"
     ],
     "paths": {
-      "ziti-console-lib": [
-        "dist/ziti-console-lib"
+      "zt-console-lib": [
+        "dist/zt-console-lib"
       ],
       "json-schema-ref-resolver": [
         "dist/json-schema-ref-resolver"
       ],
-      "app-ziti-console": [
-        "dist/app-ziti-console"
+      "app-zt-console": [
+        "dist/app-zt-console"
       ]
     }
   },

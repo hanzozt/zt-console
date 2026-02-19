@@ -9,8 +9,8 @@ permissions:
   contents: read
 
 jobs:
-  build-and-publish-app-ziti-console:
-    if: startsWith(github.event.release.name, 'app-ziti-console-v')
+  build-and-publish-app-zt-console:
+    if: startsWith(github.event.release.name, 'app-zt-console-v')
     runs-on: ubuntu-latest
     permissions:
       contents: write
@@ -23,16 +23,16 @@ jobs:
         with:
           node-version: 18
           registry-url: https://npm.pkg.github.com/
-      - name: build and upload ziti-console.zip as SPA for use with controller
+      - name: build and upload zt-console.zip as SPA for use with controller
         env:
           GITHUB_TOKEN: ${{ github.TOKEN }}
         run: |
           ./build.sh /zac/
-          cd dist/app-ziti-console && zip -r ziti-console.zip *
-          gh release upload ${{github.event.release.tag_name}} ziti-console.zip
+          cd dist/app-zt-console && zip -r zt-console.zip *
+          gh release upload ${{github.event.release.tag_name}} zt-console.zip
 
-  build-and-publish-ziti-console-lib:
-    if: startsWith(github.event.release.name, 'ziti-console-lib-v')
+  build-and-publish-zt-console-lib:
+    if: startsWith(github.event.release.name, 'zt-console-lib-v')
     runs-on: ubuntu-latest
     env:
       BUILD_CONFIG: "Release"
@@ -52,6 +52,6 @@ jobs:
           VERSION=$(echo "${{ github.event.release.name }}" | grep -oP '^.*-v(.*)$')
           echo "VERSION=${VERSION}" >> $GITHUB_ENV
 
-      - name: Build and Publish Shared Library - ziti-console-lib
+      - name: Build and Publish Shared Library - zt-console-lib
         if: github.repository_owner == 'hanzozt'
         run: ./publishSharedLib.sh

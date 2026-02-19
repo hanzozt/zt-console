@@ -1,4 +1,4 @@
-![Ziggy using the ziti-console](https://raw.githubusercontent.com/hanzozt/ziti-console/main/projects/ziti-console-lib/src/lib/assets/banners/ZAC.jpg)
+![Ziggy using the zt-console](https://raw.githubusercontent.com/hanzozt/zt-console/main/projects/zt-console-lib/src/lib/assets/banners/ZAC.jpg)
 
 <p align="center" width="100%">
 Hanzo ZT is a free and open source project focused on bringing zero trust to any application.
@@ -10,12 +10,12 @@ The project provides all the pieces required to implement or integrate zero trus
 </p>
 
 <p align="center" width="100%">
-<a href="https://hanzozt.dev"><img src="https://github.com/hanzozt/ziti-console/blob/main/projects/ziti-console-lib/src/lib/assets/icons/android-icon-192x192.png?raw=true" width="100"></a>
+<a href="https://hanzozt.dev"><img src="https://github.com/hanzozt/zt-console/blob/main/projects/zt-console-lib/src/lib/assets/icons/android-icon-192x192.png?raw=true" width="100"></a>
 </p>
 
 <p align="center">
     <b>
-    <a>@hanzozt/ziti-console</a>
+    <a>@hanzozt/zt-console</a>
     <br>
     <br>
     </b>
@@ -36,12 +36,12 @@ The project provides all the pieces required to implement or integrate zero trus
 <br/>
 Please star us!
 <br/>
-<a href="https://github.com/hanzozt/ziti/stargazers"><img src="https://img.shields.io/github/stars/hanzozt/ziti?style=flat" ></a>
+<a href="https://github.com/hanzozt/zt/stargazers"><img src="https://img.shields.io/github/stars/hanzozt/zt?style=flat" ></a>
     </p>
 
 ---
 
-[![Issues](https://img.shields.io/github/issues-raw/hanzozt/ziti-console)](https://github.com/hanzozt/ziti-console/issues)
+[![Issues](https://img.shields.io/github/issues-raw/hanzozt/zt-console)](https://github.com/hanzozt/zt-console/issues)
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=rounded)](CONTRIBUTING.md)
 [![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-v2.0%20adopted-ff69b4.svg)](CODE_OF_CONDUCT.md)
@@ -80,8 +80,8 @@ npm install -g @angular/cli@16
 
 This repository houses two projects.
 
-1. [ziti-console-lib](./projects/ziti-console-lib) - Angular library used by the console UI.
-1. [app-ziti-console](./projects/app-ziti-console) - console UI with two deployment modes.
+1. [zt-console-lib](./projects/zt-console-lib) - Angular library used by the console UI.
+1. [app-zt-console](./projects/app-zt-console) - console UI with two deployment modes.
 1. Single page application mode (recommended)
 1. Node.js server mode (`server.js`, deprecated)
 
@@ -100,10 +100,10 @@ From the project root:
 1. Build the console project with Angular.
 
     ```bash
-    ng build ziti-console
+    ng build zt-console
     ```
 
-1. The single-page application assets are rendered in the `./dist/app-ziti-console` directory.
+1. The single-page application assets are rendered in the `./dist/app-zt-console` directory.
 1. use the Node server to preview changes.
 
 ### Build the Standalone Node Server
@@ -113,7 +113,7 @@ From the project root:
 1. Build the console project with Angular.
 
     ```bash
-    ng build ziti-console-node
+    ng build zt-console-node
     ```
 
 1. If developing the standalone Node server, run it.
@@ -137,16 +137,16 @@ From the project directory:
     npm install
     ```
 
-1. Continually build the library in **./dist/ziti-console-lib** by running the npm script **watch:lib**.
+1. Continually build the library in **./dist/zt-console-lib** by running the npm script **watch:lib**.
 
     ```bash
-    ng build ziti-console-lib --watch
+    ng build zt-console-lib --watch
     ```
 
-   Note: The NPM library is referenced/linked in `package.json` as `"ziti-console-lib": "file:dist/ziti-console-lib"`. This library includes the javascript code shared with the console application and the Angular code shared with other applications.
+   Note: The NPM library is referenced/linked in `package.json` as `"zt-console-lib": "file:dist/zt-console-lib"`. This library includes the javascript code shared with the console application and the Angular code shared with other applications.
 
-1. Continually build the deprecated Node server in **app-ziti-console-node** to preview changes.
+1. Continually build the deprecated Node server in **app-zt-console-node** to preview changes.
 
     ```bash
-    ng build ziti-console-node --watch
+    ng build zt-console-node --watch
     ```

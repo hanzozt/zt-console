@@ -4,7 +4,7 @@ on:
   push:
     tags: 
       # Publish semver tags as releases.
-      - app-ziti-console-v*.*.*
+      - app-zt-console-v*.*.*
 
 jobs:
   parse-version:
@@ -23,9 +23,9 @@ jobs:
           GITHUB_RUN_ID: ${{ github.run_id }}
         run: |
           set -o pipefail
-          echo "version=${GITHUB_REF_NAME#app-ziti-console-v}" | tee -a $GITHUB_OUTPUT
+          echo "version=${GITHUB_REF_NAME#app-zt-console-v}" | tee -a $GITHUB_OUTPUT
 
-  build-and-upload-app-ziti-console:
+  build-and-upload-app-zt-console:
     needs: parse-version
     name: Build Console ZIP
     runs-on: ubuntu-latest
@@ -40,20 +40,20 @@ jobs:
           node-version: 18
           registry-url: https://npm.pkg.github.com/
 
-      - name: build app-ziti-console
+      - name: build app-zt-console
         shell: bash
         run: ./build.sh /zac/
 
-      - name: upload app-ziti-console
+      - name: upload app-zt-console
         uses: actions/upload-artifact@v4
         with:
-          name: app-ziti-console
-          path: ./dist/app-ziti-console/
+          name: app-zt-console
+          path: ./dist/app-zt-console/
 
   publish-linux-packages:
     needs:
       - parse-version
-      - build-and-upload-app-ziti-console
+      - build-and-upload-app-zt-console
     name: ${{ matrix.package_name }} ${{ matrix.arch.rpm }} ${{ matrix.nfpm_packager }}
     runs-on: ubuntu-latest
     strategy:
@@ -80,21 +80,21 @@ jobs:
       ZITI_HOMEPAGE: "https://hanzozt.dev"
       ZITI_VENDOR: "NetFoundry, Inc."
       GOARCH: ${{ matrix.arch.goreleaser }}
-      ZITI_DEB_TEST_REPO: ${{ vars.ZITI_DEB_TEST_REPO || 'zitipax-hanzozt-deb-test' }}
-      ZITI_RPM_TEST_REPO: ${{ vars.ZITI_RPM_TEST_REPO || 'zitipax-hanzozt-rpm-test' }}
-      ZITI_DEB_PROD_REPO: ${{ vars.ZITI_DEB_PROD_REPO || 'zitipax-hanzozt-deb-stable' }}
-      ZITI_RPM_PROD_REPO: ${{ vars.ZITI_RPM_PROD_REPO || 'zitipax-hanzozt-rpm-stable' }}
+      ZITI_DEB_TEST_REPO: ${{ vars.ZITI_DEB_TEST_REPO || 'ztpax-hanzozt-deb-test' }}
+      ZITI_RPM_TEST_REPO: ${{ vars.ZITI_RPM_TEST_REPO || 'ztpax-hanzozt-rpm-test' }}
+      ZITI_DEB_PROD_REPO: ${{ vars.ZITI_DEB_PROD_REPO || 'ztpax-hanzozt-deb-stable' }}
+      ZITI_RPM_PROD_REPO: ${{ vars.ZITI_RPM_PROD_REPO || 'ztpax-hanzozt-rpm-stable' }}
       NFPM_VERSION: "2.38.0"
       JFROG_CLI_VERSION: "2.63.0"
     steps:
       - name: Checkout Workspace
         uses: actions/checkout@v4
 
-      - name: Download app-ziti-console
+      - name: Download app-zt-console
         uses: actions/download-artifact@v4
         with:
-          name: app-ziti-console
-          path: ./dist/app-ziti-console
+          name: app-zt-console
+          path: ./dist/app-zt-console
 
       - name: Build Package
         id: nfpm

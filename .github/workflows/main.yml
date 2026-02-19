@@ -37,7 +37,7 @@ jobs:
         with:
           builder: ${{ steps.buildx.outputs.name }}
           context: ${{ github.workspace }}/
-          file: ./docker-images/ziti-console-assets/Dockerfile
+          file: ./docker-images/zt-console-assets/Dockerfile
           platforms: linux/amd64,linux/arm64
           push: false
           cache-from: type=gha,scope=${{ github.workflow }}

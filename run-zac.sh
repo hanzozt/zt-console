@@ -40,7 +40,7 @@ fi
     }],
     "editable": true,
     "update": false,
-    "location": "../ziti",
+    "location": "../zt",
     "port": 1408,
     "portTLS": 8443,
     "logo": "",
